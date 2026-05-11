@@ -1,108 +1,540 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BostonLuxLimos - Coming Soon</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be') no-repeat center center/cover;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-      backdrop-filter: brightness(0.5);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BostonLuxLimos — Greater New England's Premier Limousine Service</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 5vw 9vh;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(201,169,110,0.07) 0%, transparent 60%), linear-gradient(160deg, #0a0a0c 0%, #111114 45%, #0d0d10 100%);
+  }
+  .hero-rule { position: absolute; inset: 0; overflow: hidden; opacity: 0.1; }
+  .hero-rule::before { content:''; position:absolute; top:-20%; right:12%; width:1px; height:140%; background:linear-gradient(to bottom,transparent,var(--champagne),transparent); transform:rotate(10deg); }
+  .hero-rule::after { content:''; position:absolute; top:-20%; right:22%; width:1px; height:140%; background:linear-gradient(to bottom,transparent,var(--champagne),transparent); transform:rotate(10deg); }
+  .hero-logo-watermark { position:absolute; top:50%; right:6vw; transform:translateY(-55%); width:min(340px,32vw); opacity:0.06; pointer-events:none; filter:brightness(10); }
+  .hero-eyebrow { font-size:0.68rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--champagne); margin-bottom:1.5rem; position:relative; display:flex; align-items:center; gap:1rem; animation:fadeUp 0.8s ease 0.2s both; }
+  .hero-eyebrow::before { content:''; display:block; width:2.5rem; height:1px; background:var(--champagne); }
+  .hero-title { font-family:'Times New Roman',Times,serif; font-size:clamp(3.5rem,8vw,8.5rem); font-weight:normal; line-height:0.92; color:var(--ivory); margin-bottom:2.5rem; position:relative; animation:fadeUp 0.8s ease 0.4s both; }
+  .hero-title em { font-style:italic; color:var(--champagne); }
+  .hero-sub { font-size:0.9rem; line-height:1.85; color:var(--silver); max-width:40ch; margin-bottom:3rem; position:relative; animation:fadeUp 0.8s ease 0.6s both; }
+  .hero-actions { display:flex; align-items:center; gap:2rem; position:relative; animation:fadeUp 0.8s ease 0.8s both; }
+  .btn-ghost { font-family:'Times New Roman',Times,serif; font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--light-silver); text-decoration:none; display:flex; align-items:center; gap:0.7rem; transition:color 0.3s; }
+  .btn-ghost:hover { color:var(--champagne); }
+  .btn-ghost::after { content:''; display:block; width:2rem; height:1px; background:currentColor; transition:width 0.3s; }
+  .btn-ghost:hover::after { width:3.5rem; }
+  .hero-scroll { position:absolute; bottom:3rem; right:5vw; writing-mode:vertical-rl; font-size:0.6rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--silver); display:flex; align-items:center; gap:1rem; }
+  .hero-scroll::after { content:''; display:block; width:1px; height:4rem; background:linear-gradient(to bottom,var(--champagne),transparent); animation:scrollLine 2.2s ease-in-out infinite; }
+  @keyframes scrollLine { 0%,100%{opacity:0.4;} 50%{opacity:1;} }
 
-    .container {
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 40px;
-      border-radius: 10px;
-    }
+  .stats-bar { background:var(--charcoal); border-top:1px solid rgba(201,169,110,0.14); border-bottom:1px solid rgba(201,169,110,0.14); padding:2.5rem 5vw; display:grid; grid-template-columns:repeat(4,1fr); }
+  .stat-item { text-align:center; padding:0 1rem; border-right:1px solid rgba(255,255,255,0.06); }
+  .stat-item:last-child { border-right:none; }
+  .stat-num { font-family:'Times New Roman',Times,serif; font-size:2.8rem; font-weight:normal; color:var(--champagne); line-height:1; margin-bottom:0.5rem; }
+  .stat-label { font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--silver); }
 
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
+  /* BOSTON SKYLINE */
+  .skyline-section { background:var(--deep-noir); padding:5rem 5vw; display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; border-bottom:1px solid rgba(201,169,110,0.1); }
+  .skyline-image-wrap { position:relative; background:var(--charcoal); border:1px solid rgba(201,169,110,0.12); overflow:hidden; }
+  .skyline-image-wrap img { width:100%; display:block; filter:invert(1) brightness(0.8); mix-blend-mode:screen; opacity:0.72; }
+  .skyline-image-wrap::after { content:''; position:absolute; inset:0; background:linear-gradient(to right,var(--charcoal) 0%,transparent 18%,transparent 82%,var(--charcoal) 100%); }
+  .skyline-text h2 { font-family:'Times New Roman',Times,serif; font-size:clamp(2rem,3vw,3.2rem); font-weight:normal; line-height:1.1; color:var(--ivory); margin-bottom:1.5rem; }
+  .skyline-text h2 em { font-style:italic; color:var(--champagne); }
+  .skyline-text p { font-size:0.88rem; line-height:1.9; color:var(--silver); margin-bottom:1.2rem; }
 
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
-    }
+  /* CAR ILLUSTRATIONS */
+  .illustration-strip { background:var(--obsidian); padding:5rem 5vw 3.5rem; border-bottom:1px solid rgba(201,169,110,0.08); }
+  .cars-row { display:grid; grid-template-columns:repeat(4,1fr); background:rgba(201,169,110,0.08); }
+  .car-illustration { background:var(--obsidian); padding:2.5rem 1.8rem 2rem; text-align:center; border-right:1px solid rgba(201,169,110,0.08); transition:background 0.35s; position:relative; overflow:hidden; }
+  .car-illustration:last-child { border-right:none; }
+  .car-illustration:hover { background:var(--charcoal); }
+  .car-illustration::after { content:''; position:absolute; bottom:0; left:0; width:0; height:1px; background:var(--champagne); transition:width 0.4s; }
+  .car-illustration:hover::after { width:100%; }
+  .car-svg-wrap { margin-bottom:1.4rem; }
+  .car-svg-wrap svg { width:100%; max-width:230px; }
+  .car-caption { font-family:'Times New Roman',Times,serif; font-size:0.95rem; font-style:italic; color:var(--champagne-pale); margin-bottom:0.3rem; }
+  .car-sub { font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--silver); }
 
-    #countdown {
-      font-size: 2rem;
-      font-weight: bold;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
+  /* SERVICES */
+  .services-preview { padding:7rem 5vw; background:var(--deep-noir); }
+  .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5px; background:rgba(201,169,110,0.12); margin-top:1rem; }
+  .service-card { background:var(--deep-noir); padding:3rem 2.5rem; position:relative; overflow:hidden; transition:background 0.4s; cursor:default; }
+  .service-card:hover { background:var(--charcoal); }
+  .service-card::after { content:''; position:absolute; bottom:0; left:0; width:0; height:2px; background:var(--champagne); transition:width 0.4s; }
+  .service-card:hover::after { width:100%; }
+  .service-num { font-family:'Times New Roman',Times,serif; font-size:3.5rem; font-style:italic; color:rgba(201,169,110,0.08); line-height:1; margin-bottom:1.5rem; transition:color 0.4s; }
+  .service-card:hover .service-num { color:rgba(201,169,110,0.16); }
+  .service-name { font-family:'Times New Roman',Times,serif; font-size:1.25rem; font-weight:normal; color:var(--ivory); margin-bottom:0.9rem; }
+  .service-desc { font-size:0.82rem; line-height:1.85; color:var(--silver); }
+  .services-cta { margin-top:3.5rem; display:flex; gap:1.5rem; }
 
-    .time {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+  /* TRANSPORT HUBS */
+  .transport-hubs { background:var(--charcoal); border-top:1px solid rgba(201,169,110,0.1); border-bottom:1px solid rgba(201,169,110,0.1); padding:7rem 5vw; }
+  .hubs-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5px; background:rgba(201,169,110,0.1); margin-top:1rem; }
+  .hub-card { background:var(--charcoal); padding:3rem 2.5rem; transition:background 0.3s; position:relative; }
+  .hub-card:hover { background:var(--smoke); }
+  .hub-card::after { content:''; position:absolute; top:0; left:0; height:0; width:2px; background:var(--champagne); transition:height 0.4s; }
+  .hub-card:hover::after { height:100%; }
+  .hub-icon { margin-bottom:1.5rem; }
+  .hub-icon svg { width:44px; height:44px; }
+  .hub-title { font-family:'Times New Roman',Times,serif; font-size:1.25rem; font-weight:normal; color:var(--ivory); margin-bottom:0.9rem; }
+  .hub-desc { font-size:0.82rem; line-height:1.85; color:var(--silver); margin-bottom:1.5rem; }
+  .hub-locations { list-style:none; }
+  .hub-locations li { font-size:0.73rem; color:var(--light-silver); padding:0.35rem 0; border-bottom:1px solid rgba(255,255,255,0.04); display:flex; align-items:center; gap:0.7rem; }
+  .hub-locations li::before { content:''; display:block; width:4px; height:1px; background:var(--champagne); flex-shrink:0; }
 
-    .label {
-      font-size: 0.9rem;
-      margin-top: 5px;
-    }
+  /* COVERAGE */
+  .coverage-band { background:var(--deep-noir); border-bottom:1px solid rgba(201,169,110,0.1); padding:5rem 5vw; text-align:center; }
+  .coverage-band h2 { font-family:'Times New Roman',Times,serif; font-size:clamp(1.8rem,3vw,3rem); font-weight:normal; color:var(--ivory); margin-bottom:1rem; }
+  .coverage-band h2 em { font-style:italic; color:var(--champagne); }
+  .coverage-band>p { font-size:0.85rem; line-height:1.85; color:var(--silver); max-width:52ch; margin:0 auto 2.5rem; }
+  .states-row { display:flex; flex-wrap:wrap; justify-content:center; gap:0.8rem 1.5rem; max-width:700px; margin:0 auto; }
+  .state-pill { font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--champagne); border:1px solid rgba(201,169,110,0.25); padding:0.45rem 1.2rem; transition:border-color 0.3s,background 0.3s; }
+  .state-pill:hover { border-color:var(--champagne); background:rgba(201,169,110,0.07); }
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
+  /* BOOKING */
+  .booking-section { padding:7rem 5vw; background:var(--obsidian); text-align:center; }
+  .booking-box { max-width:700px; margin:0 auto; border:1px solid rgba(201,169,110,0.2); padding:4rem 3.5rem; background:var(--charcoal); }
+  .booking-box h2 { font-family:'Times New Roman',Times,serif; font-size:2.2rem; font-weight:normal; color:var(--ivory); margin-bottom:0.8rem; }
+  .booking-box h2 em { font-style:italic; color:var(--champagne); }
+  .booking-box>p { font-size:0.85rem; line-height:1.85; color:var(--silver); margin-bottom:2.5rem; }
+  .booking-embed-placeholder { background:var(--smoke); border:1px dashed rgba(201,169,110,0.2); padding:3.5rem 2rem; margin-bottom:1.5rem; }
+  .booking-embed-placeholder p { font-size:0.75rem; letter-spacing:0.1em; color:var(--muted-gold); margin:0; }
 
-      #countdown {
-        flex-direction: column;
-        gap: 10px;
-      }
-    }
-  </style>
+  /* TESTIMONIALS */
+  .testimonials { background:var(--charcoal); border-top:1px solid rgba(201,169,110,0.1); padding:7rem 5vw; }
+  .testimonials-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:rgba(201,169,110,0.1); margin-top:1rem; }
+  .testimonial-card { background:var(--charcoal); padding:2.8rem 2.5rem; }
+  .quote-mark { font-family:'Times New Roman',Times,serif; font-size:4.5rem; font-style:italic; color:rgba(201,169,110,0.15); line-height:0.8; margin-bottom:1.2rem; }
+  .testimonial-text { font-family:'Times New Roman',Times,serif; font-size:1rem; font-style:italic; line-height:1.75; color:var(--champagne-pale); margin-bottom:1.8rem; }
+  .testimonial-author { font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--champagne); }
+  .testimonial-role { font-size:0.62rem; color:var(--silver); margin-top:0.3rem; }
+
+  /* LOGO SHOWCASE */
+  .logo-showcase { background:var(--obsidian); padding:6rem 5vw; display:flex; flex-direction:column; align-items:center; border-top:1px solid rgba(201,169,110,0.1); }
+  .logo-showcase img { width:min(380px,55vw); filter:brightness(1.05); margin-bottom:1.5rem; }
+  .logo-tagline { font-family:'Times New Roman',Times,serif; font-size:0.9rem; font-style:italic; letter-spacing:0.12em; color:var(--silver); }
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1>BostonLuxLimos</h1>
-    <p>We're launching soon. Get ready to ride in style through Boston.</p>
-    <div id="countdown">
-      <div class="time"><span id="days">00</span><span class="label">Days</span></div>
-      <div class="time"><span id="hours">00</span><span class="label">Hours</span></div>
-      <div class="time"><span id="minutes">00</span><span class="label">Minutes</span></div>
-      <div class="time"><span id="seconds">00</span><span class="label">Seconds</span></div>
+
+<nav>
+  <a href="index.html" style="display:flex; align-items:center; text-decoration:none;">
+    <img src="logo.jpg" alt="BostonLuxLimos" style="height:40px; width:auto; filter:brightness(1.1);">
+  </a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="fleet.html">Fleet</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Reserve Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-rule"></div>
+  <img src="logo.jpg" alt="" class="hero-logo-watermark" aria-hidden="true">
+  <div class="hero-eyebrow">Greater New England's Premier Limousine Service</div>
+  <h1 class="hero-title">Arrive<br>in <em>quiet</em><br>authority.</h1>
+  <p class="hero-sub">Impeccable chauffeur-driven transportation across all six New England states — airports, private terminals, seaports, and every destination in between.</p>
+  <div class="hero-actions">
+    <a href="contact.html" class="btn-primary">Reserve Your Ride</a>
+    <a href="fleet.html" class="btn-ghost">Explore the Fleet</a>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num">2017</div><div class="stat-label">Established</div></div>
+  <div class="stat-item"><div class="stat-num">24/7</div><div class="stat-label">Available</div></div>
+  <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">States Covered</div></div>
+  <div class="stat-item"><div class="stat-num">99%</div><div class="stat-label">On-Time Rate</div></div>
+</div>
+
+<!-- BOSTON SKYLINE + ESCALADE IMAGE -->
+<section class="skyline-section">
+  <div class="skyline-image-wrap">
+    <img src="boston-skyline-escalade.png" alt="BostonLuxLimos Escalade with Boston skyline">
+  </div>
+  <div class="skyline-text">
+    <h2>Boston's streets.<br><em>Your schedule.</em></h2>
+    <p>Since 2017, BostonLuxLimos has been the choice of executives, private families, and discerning travelers who expect more than a ride — they expect an experience.</p>
+    <p>From the first confirmation to the final mile, every detail is attended to. No surge pricing. No uncertainty. Quiet, polished precision on every journey.</p>
+    <a href="services.html" class="btn-outline" style="margin-top:0.8rem;">View Our Services</a>
+  </div>
+</section>
+
+<!-- CAR ILLUSTRATIONS -->
+<section class="illustration-strip">
+  <div class="section-eyebrow">The Fleet</div>
+  <div class="cars-row">
+
+    <!-- Mercedes S-Class -->
+    <div class="car-illustration">
+      <div class="car-svg-wrap">
+        <svg viewBox="0 0 280 130" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <ellipse cx="140" cy="118" rx="100" ry="5" fill="rgba(201,169,110,0.04)"/>
+          <ellipse cx="72" cy="105" rx="20" ry="20" fill="#111118"/>
+          <ellipse cx="72" cy="105" rx="15" ry="15" fill="#1e1e28" stroke="#c9a96e" stroke-width="0.7"/>
+          <ellipse cx="72" cy="105" rx="6" ry="6" fill="#0a0a0c" stroke="#c9a96e" stroke-width="0.5"/>
+          <ellipse cx="208" cy="105" rx="20" ry="20" fill="#111118"/>
+          <ellipse cx="208" cy="105" rx="15" ry="15" fill="#1e1e28" stroke="#c9a96e" stroke-width="0.7"/>
+          <ellipse cx="208" cy="105" rx="6" ry="6" fill="#0a0a0c" stroke="#c9a96e" stroke-width="0.5"/>
+          <line x1="72" y1="90" x2="72" y2="100" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="72" y1="110" x2="72" y2="120" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="57" y1="105" x2="67" y2="105" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="77" y1="105" x2="87" y2="105" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="208" y1="90" x2="208" y2="100" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="208" y1="110" x2="208" y2="120" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="193" y1="105" x2="203" y2="105" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="213" y1="105" x2="223" y2="105" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <path d="M38 105 L38 72 Q55 40 110 36 L195 37 Q238 40 248 68 L248 105 Z" fill="#161620" stroke="#c9a96e" stroke-width="0.6"/>
+          <path d="M95 70 L95 40 Q118 34 160 35 L195 36 Q222 40 228 58 L228 70 Z" fill="#0c1422" stroke="#c9a96e" stroke-width="0.4" opacity="0.9"/>
+          <line x1="153" y1="35" x2="153" y2="70" stroke="#c9a96e" stroke-width="0.5" opacity="0.4"/>
+          <rect x="32" y="78" width="14" height="8" rx="2" fill="#c9a96e" opacity="0.8"/>
+          <rect x="240" y="78" width="14" height="8" rx="2" fill="#c9a96e" opacity="0.5"/>
+          <line x1="153" y1="70" x2="153" y2="105" stroke="#c9a96e" stroke-width="0.3" opacity="0.25"/>
+          <path d="M92 55 L84 58 L84 65 L92 65 Z" fill="#1e1e28" stroke="#c9a96e" stroke-width="0.4" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="car-caption">Mercedes-Benz S-Class</div>
+      <div class="car-sub">Executive Sedan · 3 Guests</div>
+    </div>
+
+    <!-- Escalade -->
+    <div class="car-illustration">
+      <div class="car-svg-wrap">
+        <svg viewBox="0 0 280 130" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <ellipse cx="140" cy="118" rx="105" ry="5" fill="rgba(201,169,110,0.04)"/>
+          <ellipse cx="68" cy="104" rx="21" ry="21" fill="#111118"/>
+          <ellipse cx="68" cy="104" rx="16" ry="16" fill="#1e1e28" stroke="#c9a96e" stroke-width="0.7"/>
+          <ellipse cx="68" cy="104" rx="6" ry="6" fill="#0a0a0c" stroke="#c9a96e" stroke-width="0.5"/>
+          <ellipse cx="212" cy="104" rx="21" ry="21" fill="#111118"/>
+          <ellipse cx="212" cy="104" rx="16" ry="16" fill="#1e1e28" stroke="#c9a96e" stroke-width="0.7"/>
+          <ellipse cx="212" cy="104" rx="6" ry="6" fill="#0a0a0c" stroke="#c9a96e" stroke-width="0.5"/>
+          <line x1="68" y1="83" x2="68" y2="94" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="68" y1="114" x2="68" y2="125" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="47" y1="104" x2="58" y2="104" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="78" y1="104" x2="89" y2="104" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="212" y1="83" x2="212" y2="94" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="212" y1="114" x2="212" y2="125" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="191" y1="104" x2="202" y2="104" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="222" y1="104" x2="233" y2="104" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <path d="M32 104 L32 58 L48 36 L238 36 L254 52 L254 104 Z" fill="#161620" stroke="#c9a96e" stroke-width="0.6"/>
+          <rect x="50" y="40" width="148" height="52" rx="1" fill="#0c1422" stroke="#c9a96e" stroke-width="0.4" opacity="0.85"/>
+          <line x1="128" y1="40" x2="128" y2="92" stroke="#c9a96e" stroke-width="0.5" opacity="0.4"/>
+          <line x1="198" y1="44" x2="198" y2="92" stroke="#c9a96e" stroke-width="0.4" opacity="0.3"/>
+          <rect x="26" y="72" width="18" height="12" rx="2" fill="#c9a96e" opacity="0.8"/>
+          <rect x="244" y="72" width="18" height="12" rx="2" fill="#c9a96e" opacity="0.5"/>
+          <path d="M47 58 L38 62 L38 70 L47 70 Z" fill="#1e1e28" stroke="#c9a96e" stroke-width="0.4" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="car-caption">Cadillac Escalade ESV</div>
+      <div class="car-sub">Luxury SUV · 6 Guests</div>
+    </div>
+
+    <!-- Stretch Limo -->
+    <div class="car-illustration">
+      <div class="car-svg-wrap">
+        <svg viewBox="0 0 280 130" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <ellipse cx="140" cy="118" rx="120" ry="5" fill="rgba(201,169,110,0.04)"/>
+          <ellipse cx="55" cy="106" rx="18" ry="18" fill="#111118"/>
+          <ellipse cx="55" cy="106" rx="13" ry="13" fill="#1e1e28" stroke="#c9a96e" stroke-width="0.7"/>
+          <ellipse cx="55" cy="106" rx="5" ry="5" fill="#0a0a0c" stroke="#c9a96e" stroke-width="0.5"/>
+          <ellipse cx="225" cy="106" rx="18" ry="18" fill="#111118"/>
+          <ellipse cx="225" cy="106" rx="13" ry="13" fill="#1e1e28" stroke="#c9a96e" stroke-width="0.7"/>
+          <ellipse cx="225" cy="106" rx="5" ry="5" fill="#0a0a0c" stroke="#c9a96e" stroke-width="0.5"/>
+          <line x1="55" y1="88" x2="55" y2="98" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="55" y1="114" x2="55" y2="124" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="37" y1="106" x2="47" y2="106" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="63" y1="106" x2="73" y2="106" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="225" y1="88" x2="225" y2="98" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="225" y1="114" x2="225" y2="124" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="207" y1="106" x2="217" y2="106" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="233" y1="106" x2="243" y2="106" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <path d="M22 106 L22 74 Q35 50 68 46 L224 46 Q252 50 260 72 L260 106 Z" fill="#161620" stroke="#c9a96e" stroke-width="0.6"/>
+          <path d="M70 74 L70 48 Q96 42 150 44 L210 45 Q236 48 240 62 L240 74 Z" fill="#0c1422" stroke="#c9a96e" stroke-width="0.4" opacity="0.9"/>
+          <line x1="120" y1="44" x2="120" y2="74" stroke="#c9a96e" stroke-width="0.5" opacity="0.35"/>
+          <line x1="165" y1="44" x2="165" y2="74" stroke="#c9a96e" stroke-width="0.4" opacity="0.3"/>
+          <line x1="205" y1="44" x2="205" y2="74" stroke="#c9a96e" stroke-width="0.4" opacity="0.25"/>
+          <rect x="16" y="80" width="12" height="8" rx="2" fill="#c9a96e" opacity="0.8"/>
+          <rect x="254" y="80" width="12" height="8" rx="2" fill="#c9a96e" opacity="0.5"/>
+          <path d="M67 60 L59 63 L59 70 L67 70 Z" fill="#1e1e28" stroke="#c9a96e" stroke-width="0.4" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="car-caption">Lincoln Stretch Limo</div>
+      <div class="car-sub">Stretch · 10 Guests</div>
+    </div>
+
+    <!-- Sprinter -->
+    <div class="car-illustration">
+      <div class="car-svg-wrap">
+        <svg viewBox="0 0 280 130" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <ellipse cx="140" cy="120" rx="108" ry="5" fill="rgba(201,169,110,0.04)"/>
+          <ellipse cx="68" cy="107" rx="18" ry="18" fill="#111118"/>
+          <ellipse cx="68" cy="107" rx="13" ry="13" fill="#1e1e28" stroke="#c9a96e" stroke-width="0.7"/>
+          <ellipse cx="68" cy="107" rx="5" ry="5" fill="#0a0a0c" stroke="#c9a96e" stroke-width="0.5"/>
+          <ellipse cx="212" cy="107" rx="18" ry="18" fill="#111118"/>
+          <ellipse cx="212" cy="107" rx="13" ry="13" fill="#1e1e28" stroke="#c9a96e" stroke-width="0.7"/>
+          <ellipse cx="212" cy="107" rx="5" ry="5" fill="#0a0a0c" stroke="#c9a96e" stroke-width="0.5"/>
+          <line x1="68" y1="89" x2="68" y2="99" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="68" y1="115" x2="68" y2="125" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="50" y1="107" x2="60" y2="107" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="76" y1="107" x2="86" y2="107" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="212" y1="89" x2="212" y2="99" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="212" y1="115" x2="212" y2="125" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="194" y1="107" x2="204" y2="107" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <line x1="220" y1="107" x2="230" y2="107" stroke="#c9a96e" stroke-width="0.5" opacity="0.5"/>
+          <path d="M30 107 L30 32 Q40 18 88 16 L240 16 L258 30 L258 107 Z" fill="#161620" stroke="#c9a96e" stroke-width="0.6"/>
+          <rect x="94" y="24" width="130" height="56" rx="1" fill="#0c1422" stroke="#c9a96e" stroke-width="0.4" opacity="0.85"/>
+          <line x1="150" y1="24" x2="150" y2="80" stroke="#c9a96e" stroke-width="0.5" opacity="0.4"/>
+          <line x1="192" y1="24" x2="192" y2="80" stroke="#c9a96e" stroke-width="0.4" opacity="0.3"/>
+          <path d="M34 78 L34 30 Q42 18 88 18 L88 78 Z" fill="#0c1422" stroke="#c9a96e" stroke-width="0.4" opacity="0.7"/>
+          <rect x="24" y="82" width="18" height="12" rx="2" fill="#c9a96e" opacity="0.8"/>
+          <rect x="248" y="82" width="16" height="12" rx="2" fill="#c9a96e" opacity="0.5"/>
+          <line x1="88" y1="16" x2="240" y2="16" stroke="#c9a96e" stroke-width="0.4" opacity="0.3"/>
+          <path d="M86 38 L74 42 L74 52 L86 52 Z" fill="#1e1e28" stroke="#c9a96e" stroke-width="0.4" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="car-caption">Mercedes-Benz Sprinter</div>
+      <div class="car-sub">Executive Van · 14 Guests</div>
     </div>
   </div>
 
-  <script>
-    const launchDate = new Date("June 1, 2025 12:00:00").getTime();
+  <div style="margin-top:3rem; display:flex; gap:1.5rem;">
+    <a href="fleet.html" class="btn-primary">View Full Fleet</a>
+  </div>
+</section>
 
-    const updateCountdown = () => {
-      const now = new Date().getTime();
-      const distance = launchDate - now;
+<!-- SERVICES -->
+<section class="services-preview">
+  <div class="section-eyebrow">What We Offer</div>
+  <div class="section-title" style="margin-bottom:0;">Every occasion,<br><em>impeccably served.</em></div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <h3 class="service-name">Airport Transfers</h3>
+      <p class="service-desc">Commercial airports across all six states — Logan, Manchester, T.F. Green, Bradley, and Burlington — with real-time flight tracking and complimentary wait time.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <h3 class="service-name">Private Terminal Service</h3>
+      <p class="service-desc">Discreet, seamless service to and from Fixed Base Operators and private aviation terminals — timed to your aircraft's schedule, not a published timetable.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <h3 class="service-name">Seaport & Cruise</h3>
+      <p class="service-desc">Boston's cruise terminals, Cape Cod ports, and all regional maritime arrival points — coordinated arrivals and luggage handling at any hour.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <h3 class="service-name">Corporate Travel</h3>
+      <p class="service-desc">Executive transfers with absolute discretion. Dedicated accounts, monthly invoicing, and priority scheduling for business clients across New England.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <h3 class="service-name">Special Events</h3>
+      <p class="service-desc">Weddings, galas, proms, and private celebrations — from Boston's finest venues to a Newport estate — with champagne and red-carpet service on request.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <h3 class="service-name">Long Distance</h3>
+      <p class="service-desc">Boston to New York, Providence to Portland, Hartford to Burlington — flat-rate, door-to-door, in genuine comfort across every New England corridor.</p>
+    </div>
+  </div>
+  <div class="services-cta">
+    <a href="services.html" class="btn-primary">All Services</a>
+    <a href="contact.html" class="btn-outline">Get a Quote</a>
+  </div>
+</section>
 
-      if (distance < 0) {
-        document.getElementById("countdown").innerHTML = "We’re Live!";
-        return;
-      }
+<!-- TRANSPORT HUBS -->
+<section class="transport-hubs">
+  <div class="section-eyebrow">We Service</div>
+  <div class="section-title">Every point of<br><em>arrival &amp; departure.</em></div>
+  <div class="hubs-grid">
+    <div class="hub-card">
+      <div class="hub-icon">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 36 L40 36" stroke="#c9a96e" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M24 8 L30 22 L42 24 L30 28 L28 40 L24 28 L6 26 L18 22 Z" stroke="#c9a96e" stroke-width="1" fill="rgba(201,169,110,0.06)"/>
+          <circle cx="24" cy="24" r="3" stroke="#c9a96e" stroke-width="0.8"/>
+        </svg>
+      </div>
+      <h3 class="hub-title">Commercial Airports</h3>
+      <p class="hub-desc">All major regional airports — tracked arrivals, meet-and-greet inside the terminal, and curbside departure service.</p>
+      <ul class="hub-locations">
+        <li>Logan International, Boston (BOS)</li>
+        <li>Manchester-Boston Regional (MHT)</li>
+        <li>T.F. Green, Providence (PVD)</li>
+        <li>Bradley International, Hartford (BDL)</li>
+        <li>Burlington International (BTV)</li>
+        <li>Portland International Jetport (PWM)</li>
+      </ul>
+    </div>
+    <div class="hub-card">
+      <div class="hub-icon">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 30 L20 18 L42 22 L38 26 L28 24 L18 32 Z" stroke="#c9a96e" stroke-width="1" fill="rgba(201,169,110,0.06)"/>
+          <path d="M18 32 L14 38 L18 36 L20 30" stroke="#c9a96e" stroke-width="0.8" fill="none"/>
+          <path d="M28 24 L32 16 L36 20 L30 26" stroke="#c9a96e" stroke-width="0.8" fill="none"/>
+          <path d="M8 38 L40 38" stroke="#c9a96e" stroke-width="1" stroke-linecap="round" opacity="0.35"/>
+          <circle cx="36" cy="12" r="3" stroke="#c9a96e" stroke-width="0.7" opacity="0.5"/>
+        </svg>
+      </div>
+      <h3 class="hub-title">Private Aviation Terminals</h3>
+      <p class="hub-desc">High-end service for private and charter aviation clients — discreet, flexible, and timed precisely to your aircraft's arrival or departure.</p>
+      <ul class="hub-locations">
+        <li>Boston Executive Airport, Norwood (OWD)</li>
+        <li>Hanscom Field, Bedford (BED)</li>
+        <li>Minute Man Airfield, Stow</li>
+        <li>Newport State Airport, RI</li>
+        <li>Groton-New London Airport, CT</li>
+        <li>All regional FBO terminals on request</li>
+      </ul>
+    </div>
+    <div class="hub-card">
+      <div class="hub-icon">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 28 Q24 18 38 28" stroke="#c9a96e" stroke-width="1" fill="none"/>
+          <path d="M14 28 L16 20 L24 16 L32 20 L34 28" stroke="#c9a96e" stroke-width="1" fill="rgba(201,169,110,0.06)"/>
+          <line x1="24" y1="16" x2="24" y2="8" stroke="#c9a96e" stroke-width="0.8"/>
+          <path d="M24 8 L28 12 L24 11 L20 12 Z" fill="#c9a96e" opacity="0.5"/>
+          <path d="M6 32 Q16 28 24 32 Q32 36 42 32" stroke="#c9a96e" stroke-width="1" stroke-linecap="round" opacity="0.45"/>
+          <path d="M6 36 Q16 32 24 36 Q32 40 42 36" stroke="#c9a96e" stroke-width="0.7" stroke-linecap="round" opacity="0.25"/>
+        </svg>
+      </div>
+      <h3 class="hub-title">Seaports &amp; Cruise Terminals</h3>
+      <p class="hub-desc">Cruise ship arrivals, private yacht berths, and ferry terminals — coordinated with vessel schedules for a seamless transition ashore.</p>
+      <ul class="hub-locations">
+        <li>Black Falcon Cruise Terminal, Boston</li>
+        <li>Charlestown Navy Yard &amp; Waterfront</li>
+        <li>Hyannis &amp; Cape Cod Ferry Terminals</li>
+        <li>Newport, RI — Bannister's Wharf</li>
+        <li>Portland, ME — Ocean Gateway Terminal</li>
+        <li>Bar Harbor, ME — Bar Harbor Pier</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+<!-- COVERAGE -->
+<section class="coverage-band">
+  <h2>Serving all of <em>Greater New England</em></h2>
+  <p>From coastal Maine to southern Connecticut — our drivers know every road, terminal, and destination across all six states.</p>
+  <div class="states-row">
+    <span class="state-pill">Massachusetts</span>
+    <span class="state-pill">Connecticut</span>
+    <span class="state-pill">Rhode Island</span>
+    <span class="state-pill">New Hampshire</span>
+    <span class="state-pill">Vermont</span>
+    <span class="state-pill">Maine</span>
+  </div>
+</section>
 
-      document.getElementById("days").innerText = days;
-      document.getElementById("hours").innerText = hours;
-      document.getElementById("minutes").innerText = minutes;
-      document.getElementById("seconds").innerText = seconds;
-    };
+<!-- BOOKING -->
+<section class="booking-section" id="book">
+  <div class="booking-box">
+    <h2>Book <em>Online</em></h2>
+    <p>Use our reservation system to confirm your ride in minutes — available around the clock.</p>
+    <div class="booking-embed-placeholder">
+      <!-- ═══════════════════════════════════════════════════════
+           INSERT YOUR BOOKING SOFTWARE EMBED CODE HERE
+           Replace this div with your booking widget or iframe
+           ═══════════════════════════════════════════════════════ -->
+      <p>[ Booking Software Widget — Paste Your Embed Code Here ]</p>
+    </div>
+    <p style="font-size:0.75rem; color:var(--silver); margin-top:0.5rem;">Prefer to speak with us? Call <strong style="color:var(--champagne-pale);">+1 (617) 555-0190</strong> — 24/7.</p>
+  </div>
+</section>
 
-    updateCountdown(); // initial call
-    setInterval(updateCountdown, 1000);
-  </script>
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-eyebrow">Client Voices</div>
+  <div class="section-title">Trusted by those who<br><em>notice the difference.</em></div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="quote-mark">"</div>
+      <p class="testimonial-text">The driver was waiting in arrivals with a name card before I reached baggage claim. I've never felt so effortlessly received at Logan.</p>
+      <div class="testimonial-author">Margaret A.</div>
+      <div class="testimonial-role">Partner, Financial Services — Boston, MA</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="quote-mark">"</div>
+      <p class="testimonial-text">We use BostonLuxLimos for every client visit to our Seaport office. Punctual, polished, and consistent — every single time.</p>
+      <div class="testimonial-author">James R.</div>
+      <div class="testimonial-role">Director of Operations — Cambridge, MA</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="quote-mark">"</div>
+      <p class="testimonial-text">Our wedding car was perfect — champagne chilled, chauffeur impeccable. Boston to Newport without a single imperfect moment.</p>
+      <div class="testimonial-author">Caroline &amp; Thomas D.</div>
+      <div class="testimonial-role">Married in Newport, RI</div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO SHOWCASE -->
+<section class="logo-showcase">
+  <img src="logo.jpg" alt="BostonLuxLimos — Elegance in Every Journey">
+  <p class="logo-tagline">Elegance in every journey.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" style="display:block; margin-bottom:1rem;">
+        <img src="logo.jpg" alt="BostonLuxLimos" style="height:44px; width:auto; filter:brightness(1.05);">
+      </a>
+      <p>Greater New England's most trusted luxury car service since 2017. Serving all six states, every airport, seaport, and private terminal — 24 hours a day.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="services.html">Airport Transfers</a></li>
+        <li><a href="services.html">Private Aviation</a></li>
+        <li><a href="services.html">Seaport &amp; Cruise</a></li>
+        <li><a href="services.html">Corporate Travel</a></li>
+        <li><a href="services.html">Special Events</a></li>
+        <li><a href="services.html">Long Distance</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="fleet.html">Our Fleet</a></li>
+        <li><a href="contact.html">Reservations</a></li>
+        <li><a href="contact.html">Corporate Accounts</a></li>
+        <li><a href="#book">Book Online</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+16175550190">+1 (617) 555-0190</a></li>
+        <li><a href="mailto:reservations@bostonluxlimos.com">reservations@bostonluxlimos.com</a></li>
+        <li><a href="#">Boston, Massachusetts</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 BostonLuxLimos LLC — Boston, Massachusetts. Est. 2017.</span>
+    <span>Licensed &amp; Insured · MA Livery License</span>
+  </div>
+</footer>
+
 </body>
 </html>

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — BostonLuxLimos</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .services-full {
+    padding: 6rem 5vw;
+    background: var(--obsidian);
+  }
+
+  .service-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    padding: 4rem 0;
+    border-bottom: 1px solid rgba(201,169,110,0.1);
+    align-items: start;
+  }
+
+  .service-row:last-child { border-bottom: none; }
+
+  .service-left {
+    position: sticky;
+    top: 7rem;
+  }
+
+  .service-tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    margin-bottom: 1rem;
+  }
+
+  .service-left h2 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2.2rem;
+    font-weight: normal;
+    line-height: 1.1;
+    color: var(--ivory);
+    margin-bottom: 1.5rem;
+  }
+
+  .service-left h2 em { font-style: italic; color: var(--champagne); }
+
+  .service-icon-large {
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+    opacity: 0.6;
+  }
+
+  .service-right p {
+    font-size: 0.9rem;
+    line-height: 1.9;
+    color: var(--silver);
+    margin-bottom: 1.5rem;
+    max-width: 60ch;
+  }
+
+  .service-includes {
+    margin-top: 2rem;
+  }
+
+  .service-includes h4 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    margin-bottom: 1.2rem;
+    font-weight: normal;
+  }
+
+  .includes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.7rem 2rem;
+  }
+
+  .include-item {
+    font-size: 0.8rem;
+    color: var(--light-silver);
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  .include-item::before {
+    content: '';
+    display: block;
+    width: 4px; height: 4px;
+    background: var(--champagne);
+    flex-shrink: 0;
+  }
+
+  /* ── RATES BAND ── */
+  .rates-band {
+    background: var(--charcoal);
+    border-top: 1px solid rgba(201,169,110,0.12);
+    border-bottom: 1px solid rgba(201,169,110,0.12);
+    padding: 6rem 5vw;
+  }
+
+  .rates-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: rgba(201,169,110,0.12);
+    margin-top: 1rem;
+  }
+
+  .rate-card {
+    background: var(--charcoal);
+    padding: 3rem 2.5rem;
+    position: relative;
+    transition: background 0.3s;
+  }
+
+  .rate-card.featured { background: var(--smoke); }
+
+  .rate-card.featured::before {
+    content: 'Most Popular';
+    position: absolute;
+    top: 1.5rem; right: 1.5rem;
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--obsidian);
+    background: var(--champagne);
+    padding: 0.3rem 0.8rem;
+  }
+
+  .rate-name {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.4rem;
+    font-weight: normal;
+    color: var(--ivory);
+    margin-bottom: 0.5rem;
+  }
+
+  .rate-vehicle {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--silver);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+  }
+
+  .rate-price {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2.5rem;
+    font-weight: normal;
+    color: var(--champagne);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .rate-unit {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--silver);
+    margin-bottom: 2rem;
+  }
+
+  .rate-features {
+    list-style: none;
+    margin-bottom: 2.5rem;
+  }
+
+  .rate-features li {
+    font-size: 0.8rem;
+    color: var(--light-silver);
+    padding: 0.55rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .rate-features li::before {
+    content: '—';
+    color: var(--champagne);
+    font-size: 0.7rem;
+  }
+
+  /* ── AREAS ── */
+  .areas-section {
+    padding: 7rem 5vw;
+    background: var(--deep-noir);
+  }
+
+  .ne-states-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: rgba(201,169,110,0.1);
+    margin-top: 1rem;
+  }
+
+  .state-block {
+    background: var(--deep-noir);
+    padding: 2.5rem;
+    transition: background 0.3s;
+  }
+
+  .state-block:hover { background: var(--charcoal); }
+
+  .state-name {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--champagne);
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(201,169,110,0.15);
+  }
+
+  .state-cities {
+    list-style: none;
+  }
+
+  .state-cities li {
+    font-size: 0.78rem;
+    color: var(--silver);
+    padding: 0.35rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .state-cities li::before {
+    content: '';
+    display: block;
+    width: 3px; height: 3px;
+    background: rgba(201,169,110,0.4);
+    flex-shrink: 0;
+  }
+
+  .cta-band {
+    background: var(--obsidian);
+    border-top: 1px solid rgba(201,169,110,0.12);
+    padding: 6rem 5vw;
+    text-align: center;
+  }
+
+  .cta-band h2 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    font-weight: normal;
+    color: var(--ivory);
+    margin-bottom: 1rem;
+  }
+
+  .cta-band h2 em { font-style: italic; color: var(--champagne); }
+
+  .cta-band p {
+    font-size: 0.85rem;
+    line-height: 1.85;
+    color: var(--silver);
+    max-width: 46ch;
+    margin: 0 auto 2.5rem;
+  }
+
+  .cta-buttons { display: flex; gap: 1.5rem; justify-content: center; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Boston<span>LuxLimos</span></a>
+  <ul class="nav-links">
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="fleet.html">Fleet</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Reserve Now</a>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-eyebrow">What We Offer</div>
+  <h1>Every journey,<br><em>perfectly composed.</em></h1>
+</div>
+
+<!-- SERVICES DETAIL -->
+<section class="services-full">
+
+  <div class="service-row">
+    <div class="service-left">
+      <div class="service-icon-large">✈</div>
+      <div class="service-tag">01 — Transportation</div>
+      <h2>Airport<br><em>Transfers</em></h2>
+      <a href="contact.html" class="btn-primary" style="margin-top:1.5rem;">Book Now</a>
+    </div>
+    <div class="service-right">
+      <p>From the first confirmation to the moment you clear the terminal, airport transfers with BostonLuxLimos are seamless. We monitor flight arrivals in real time and adjust accordingly — no waiting, no rushing.</p>
+      <p>We service all major regional airports: Logan International (BOS), Manchester-Boston Regional (MHT), T.F. Green (PVD), Bradley International (BDL), and Burlington International (BTV).</p>
+      <div class="service-includes">
+        <h4>Included With Every Transfer</h4>
+        <div class="includes-grid">
+          <span class="include-item">Real-time flight tracking</span>
+          <span class="include-item">Meet & greet in arrivals</span>
+          <span class="include-item">Complimentary 60-min wait</span>
+          <span class="include-item">Luggage assistance</span>
+          <span class="include-item">Wi-Fi in vehicle</span>
+          <span class="include-item">Flat-rate pricing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-row">
+    <div class="service-left">
+      <div class="service-icon-large">◈</div>
+      <div class="service-tag">02 — Business</div>
+      <h2>Corporate<br><em>Travel</em></h2>
+      <a href="contact.html" class="btn-primary" style="margin-top:1.5rem;">Open an Account</a>
+    </div>
+    <div class="service-right">
+      <p>Corporate clients are handled with a level of discretion and consistency that generic rideshare services cannot match. We serve Boston's financial district, Seaport, Cambridge biotech corridor, and all suburban business parks.</p>
+      <p>Dedicated account managers, monthly consolidated invoicing, and priority scheduling are available for regular business clients. Your team's travel needs — from executive transfers to client entertainment — coordinated from one point of contact.</p>
+      <div class="service-includes">
+        <h4>Corporate Account Benefits</h4>
+        <div class="includes-grid">
+          <span class="include-item">Dedicated account manager</span>
+          <span class="include-item">Monthly invoicing</span>
+          <span class="include-item">Priority vehicle allocation</span>
+          <span class="include-item">Multi-rider coordination</span>
+          <span class="include-item">Confidential travel records</span>
+          <span class="include-item">24/7 dispatch line</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-row">
+    <div class="service-left">
+      <div class="service-icon-large">◇</div>
+      <div class="service-tag">03 — Celebrations</div>
+      <h2>Special<br><em>Events</em></h2>
+      <a href="contact.html" class="btn-primary" style="margin-top:1.5rem;">Plan Your Event</a>
+    </div>
+    <div class="service-right">
+      <p>Weddings, anniversary dinners, proms, galas, theatre evenings, and private parties — every milestone deserves an arrival worthy of the occasion. We coordinate timing, red-carpet arrivals, and can arrange champagne service in the vehicle.</p>
+      <p>Our stretch limousines and executive sedans are available by the hour or for full-day bookings. We cover Boston, Cape Cod, Newport, the Berkshires, and all New England venues.</p>
+      <div class="service-includes">
+        <h4>Event Options</h4>
+        <div class="includes-grid">
+          <span class="include-item">Champagne on request</span>
+          <span class="include-item">Red-carpet arrival</span>
+          <span class="include-item">Decorated vehicles</span>
+          <span class="include-item">Multi-stop coordination</span>
+          <span class="include-item">Stretch limousine available</span>
+          <span class="include-item">Group shuttles</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-row">
+    <div class="service-left">
+      <div class="service-icon-large">○</div>
+      <div class="service-tag">04 — Flexibility</div>
+      <h2>Hourly<br><em>Charter</em></h2>
+      <a href="contact.html" class="btn-primary" style="margin-top:1.5rem;">Charter by Hour</a>
+    </div>
+    <div class="service-right">
+      <p>Reserve your vehicle and chauffeur by the hour — fully at your disposal. Ideal for days with multiple appointments, shopping in Newbury Street, restaurant-hopping in the South End, or an evening across the city without the logistics of parking.</p>
+      <p>Hourly charters are available in 2-hour minimums with no hidden fees. The meter doesn't run on your time — your chauffeur waits for you.</p>
+      <div class="service-includes">
+        <h4>Charter Details</h4>
+        <div class="includes-grid">
+          <span class="include-item">2-hour minimum</span>
+          <span class="include-item">All vehicles available</span>
+          <span class="include-item">No extra stop fees</span>
+          <span class="include-item">Flexible routing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-row">
+    <div class="service-left">
+      <div class="service-icon-large">△</div>
+      <div class="service-tag">05 — Long Haul</div>
+      <h2>Long Distance<br><em>Journeys</em></h2>
+      <a href="contact.html" class="btn-primary" style="margin-top:1.5rem;">Get a Quote</a>
+    </div>
+    <div class="service-right">
+      <p>Boston to New York City. Providence to Portland, Maine. Hartford to Burlington. Our long-distance service covers every major corridor across New England and beyond — at flat rates, door-to-door, in genuine comfort.</p>
+      <p>Travel in a properly maintained, climate-controlled vehicle with a professional driver who knows the route — far superior to any first-class rail or shuttle alternative.</p>
+      <div class="service-includes">
+        <h4>Long Distance Benefits</h4>
+        <div class="includes-grid">
+          <span class="include-item">Flat-rate pricing</span>
+          <span class="include-item">All New England states</span>
+          <span class="include-item">NYC & beyond available</span>
+          <span class="include-item">En-route stops included</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- SERVICE AREAS — ALL 6 STATES -->
+<section class="areas-section">
+  <div class="section-eyebrow">Coverage Area</div>
+  <div class="section-title">All of Greater<br><em>New England.</em></div>
+
+  <div class="ne-states-grid">
+    <div class="state-block">
+      <div class="state-name">Massachusetts</div>
+      <ul class="state-cities">
+        <li>Boston & Greater Boston</li>
+        <li>Cambridge & Somerville</li>
+        <li>Cape Cod & The Islands</li>
+        <li>Worcester</li>
+        <li>Springfield</li>
+        <li>Berkshires</li>
+        <li>South Shore & North Shore</li>
+      </ul>
+    </div>
+    <div class="state-block">
+      <div class="state-name">Connecticut</div>
+      <ul class="state-cities">
+        <li>Hartford</li>
+        <li>New Haven</li>
+        <li>Stamford & Greenwich</li>
+        <li>Bridgeport</li>
+        <li>Mystic & New London</li>
+        <li>Litchfield Hills</li>
+      </ul>
+    </div>
+    <div class="state-block">
+      <div class="state-name">Rhode Island</div>
+      <ul class="state-cities">
+        <li>Providence</li>
+        <li>Newport</li>
+        <li>Narragansett</li>
+        <li>Warwick</li>
+        <li>Pawtucket</li>
+        <li>Block Island</li>
+      </ul>
+    </div>
+    <div class="state-block">
+      <div class="state-name">New Hampshire</div>
+      <ul class="state-cities">
+        <li>Manchester</li>
+        <li>Concord</li>
+        <li>Portsmouth</li>
+        <li>Nashua</li>
+        <li>White Mountains</li>
+        <li>Lakes Region</li>
+      </ul>
+    </div>
+    <div class="state-block">
+      <div class="state-name">Vermont</div>
+      <ul class="state-cities">
+        <li>Burlington</li>
+        <li>Stowe</li>
+        <li>Montpelier</li>
+        <li>Rutland</li>
+        <li>Woodstock & Quechee</li>
+        <li>Manchester Village</li>
+      </ul>
+    </div>
+    <div class="state-block">
+      <div class="state-name">Maine</div>
+      <ul class="state-cities">
+        <li>Portland</li>
+        <li>Bar Harbor & Acadia</li>
+        <li>Kennebunkport</li>
+        <li>Augusta</li>
+        <li>Bangor</li>
+        <li>Old Orchard Beach</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <h2>Ready to <em>reserve?</em></h2>
+  <p>Book online instantly or speak with our reservations team — available 24 hours a day, every day of the year.</p>
+  <div class="cta-buttons">
+    <a href="contact.html" class="btn-primary">Make a Reservation</a>
+    <a href="fleet.html" class="btn-outline">View the Fleet</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo" style="font-size:1.15rem;">Boston<span>LuxLimos</span></a>
+      <p>Greater New England's most trusted luxury car service since 2017. Serving all six states — 24 hours a day, 365 days a year.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="services.html">Airport Transfers</a></li>
+        <li><a href="services.html">Corporate Travel</a></li>
+        <li><a href="services.html">Special Events</a></li>
+        <li><a href="services.html">Hourly Charter</a></li>
+        <li><a href="services.html">Long Distance</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="fleet.html">Our Fleet</a></li>
+        <li><a href="contact.html">Reservations</a></li>
+        <li><a href="contact.html">Corporate Accounts</a></li>
+        <li><a href="index.html#book">Book Online</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+16175550190">+1 (617) 555-0190</a></li>
+        <li><a href="mailto:reservations@bostonluxlimos.com">reservations@bostonluxlimos.com</a></li>
+        <li><a href="#">Boston, Massachusetts</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 BostonLuxLimos LLC — Boston, Massachusetts. Est. 2017.</span>
+    <span>Licensed & Insured · MA Livery License</span>
+  </div>
+</footer>
+
+</body>
+</html>

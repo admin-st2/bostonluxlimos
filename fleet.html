@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fleet — BostonLuxLimos</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .fleet-intro {
+    padding: 6rem 5vw;
+    background: var(--obsidian);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .fleet-intro p {
+    font-size: 0.9rem;
+    line-height: 1.9;
+    color: var(--silver);
+    margin-bottom: 1.2rem;
+  }
+
+  .fleet-intro h2 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: clamp(2rem, 3vw, 3.2rem);
+    font-weight: normal;
+    line-height: 1.1;
+    color: var(--ivory);
+  }
+
+  .fleet-intro h2 em { font-style: italic; color: var(--champagne); }
+
+  /* FLEET CARDS */
+  .fleet-section {
+    background: var(--deep-noir);
+    padding: 6rem 5vw;
+  }
+
+  .fleet-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5px;
+    background: rgba(201,169,110,0.12);
+    margin-top: 1rem;
+  }
+
+  .fleet-card {
+    background: var(--deep-noir);
+    transition: background 0.3s;
+  }
+
+  .fleet-card:hover { background: var(--charcoal); }
+
+  .fleet-visual {
+    height: 230px;
+    background: var(--smoke);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .fleet-visual svg { width: 80%; opacity: 0.75; transition: opacity 0.3s; }
+  .fleet-card:hover .fleet-visual svg { opacity: 1; }
+
+  .fleet-visual-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 55%, var(--deep-noir));
+    transition: background 0.3s;
+  }
+
+  .fleet-card:hover .fleet-visual-overlay {
+    background: linear-gradient(to bottom, transparent 55%, var(--charcoal));
+  }
+
+  .fleet-body {
+    padding: 2.2rem 2.5rem 2.8rem;
+  }
+
+  .fleet-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    margin-bottom: 0.5rem;
+  }
+
+  .fleet-name {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.55rem;
+    font-weight: normal;
+    color: var(--ivory);
+    margin-bottom: 0.9rem;
+  }
+
+  .fleet-desc {
+    font-size: 0.83rem;
+    line-height: 1.85;
+    color: var(--silver);
+    margin-bottom: 1.8rem;
+  }
+
+  .fleet-specs-row {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.8rem;
+  }
+
+  .spec-chip {
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted-gold);
+    border: 1px solid rgba(138,110,62,0.3);
+    padding: 0.35rem 0.9rem;
+  }
+
+  .fleet-features {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem 1.5rem;
+  }
+
+  .fleet-features li {
+    font-size: 0.77rem;
+    color: var(--light-silver);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .fleet-features li::before {
+    content: '';
+    display: block;
+    width: 3px; height: 3px;
+    background: var(--champagne);
+    flex-shrink: 0;
+  }
+
+  /* STANDARDS */
+  .standards-section {
+    padding: 7rem 5vw;
+    background: var(--charcoal);
+    border-top: 1px solid rgba(201,169,110,0.1);
+  }
+
+  .standards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5px;
+    background: rgba(201,169,110,0.1);
+    margin-top: 1rem;
+  }
+
+  .standard-card {
+    background: var(--charcoal);
+    padding: 2.8rem 2.2rem;
+  }
+
+  .standard-num {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 3rem;
+    font-style: italic;
+    color: rgba(201,169,110,0.1);
+    line-height: 1;
+    margin-bottom: 1.2rem;
+  }
+
+  .standard-title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.05rem;
+    font-weight: normal;
+    color: var(--ivory);
+    margin-bottom: 0.7rem;
+  }
+
+  .standard-desc {
+    font-size: 0.78rem;
+    line-height: 1.85;
+    color: var(--silver);
+  }
+
+  .fleet-cta {
+    background: var(--obsidian);
+    border-top: 1px solid rgba(201,169,110,0.12);
+    padding: 6rem 5vw;
+    text-align: center;
+  }
+
+  .fleet-cta h2 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    font-weight: normal;
+    color: var(--ivory);
+    margin-bottom: 1rem;
+  }
+
+  .fleet-cta h2 em { font-style: italic; color: var(--champagne); }
+
+  .fleet-cta p {
+    font-size: 0.85rem;
+    line-height: 1.85;
+    color: var(--silver);
+    max-width: 44ch;
+    margin: 0 auto 2.5rem;
+  }
+
+  .fleet-cta-btns { display: flex; gap: 1.5rem; justify-content: center; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Boston<span>LuxLimos</span></a>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="fleet.html" class="active">Fleet</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Reserve Now</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-eyebrow">Vehicles of Distinction</div>
+  <h1>The <em>fleet.</em></h1>
+</div>
+
+<!-- INTRO -->
+<section class="fleet-intro">
+  <div>
+    <h2>Vehicles maintained to<br><em>exacting standards.</em></h2>
+  </div>
+  <div>
+    <p>Every vehicle in our fleet undergoes rigorous inspection before each assignment. We do not operate dated or high-mileage vehicles. Our standards reflect the expectations of the clients we serve.</p>
+    <p>From a discreet executive sedan to a full stretch limousine, every vehicle is impeccably prepared — climate-controlled, detailed, and stocked with amenities before your journey begins.</p>
+  </div>
+</section>
+
+<!-- FLEET CARDS -->
+<section class="fleet-section">
+  <div class="section-eyebrow">Our Vehicles</div>
+  <div class="section-title">Choose your<br><em>vehicle.</em></div>
+
+  <div class="fleet-grid">
+
+    <!-- S-Class -->
+    <div class="fleet-card">
+      <div class="fleet-visual">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <ellipse cx="110" cy="145" rx="28" ry="14" fill="#1a1a20"/>
+          <ellipse cx="110" cy="142" rx="22" ry="11" fill="#2a2a32" stroke="#c9a96e" stroke-width="0.8"/>
+          <ellipse cx="110" cy="142" rx="8" ry="8" fill="#1a1a20" stroke="#c9a96e" stroke-width="0.5"/>
+          <ellipse cx="290" cy="145" rx="28" ry="14" fill="#1a1a20"/>
+          <ellipse cx="290" cy="142" rx="22" ry="11" fill="#2a2a32" stroke="#c9a96e" stroke-width="0.8"/>
+          <ellipse cx="290" cy="142" rx="8" ry="8" fill="#1a1a20" stroke="#c9a96e" stroke-width="0.5"/>
+          <path d="M60 142 L60 100 Q90 55 160 50 L280 52 Q340 56 355 90 L355 142 Z" fill="#1e1e26" stroke="#c9a96e" stroke-width="0.6"/>
+          <path d="M130 98 L130 55 Q160 48 220 50 L270 51 Q310 56 320 78 L320 98 Z" fill="#0d1520" stroke="#c9a96e" stroke-width="0.4" opacity="0.9"/>
+          <line x1="200" y1="52" x2="200" y2="98" stroke="#c9a96e" stroke-width="0.4" opacity="0.5"/>
+          <rect x="54" y="108" width="18" height="10" rx="2" fill="#c9a96e" opacity="0.7"/>
+          <rect x="342" y="108" width="18" height="10" rx="2" fill="#c9a96e" opacity="0.5"/>
+          <text x="200" y="170" text-anchor="middle" fill="#c9a96e" font-size="8" font-family="Times New Roman" letter-spacing="4" opacity="0.5">S - C L A S S</text>
+        </svg>
+        <div class="fleet-visual-overlay"></div>
+      </div>
+      <div class="fleet-body">
+        <div class="fleet-tag">Executive Sedan</div>
+        <div class="fleet-name">Mercedes-Benz S-Class</div>
+        <p class="fleet-desc">The pinnacle of executive travel. Massaging seats, Burmester surround audio, ambient lighting, and near-total cabin silence at any speed. The preferred choice for senior executives and private clients.</p>
+        <div class="fleet-specs-row">
+          <span class="spec-chip">3 Passengers</span>
+          <span class="spec-chip">4 Bags</span>
+          <span class="spec-chip">Wi-Fi</span>
+        </div>
+        <ul class="fleet-features">
+          <li>Nappa leather seating</li>
+          <li>Rear seat massage</li>
+          <li>Burmester audio</li>
+          <li>Privacy glass</li>
+          <li>Chilled water provided</li>
+          <li>USB & wireless charging</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Escalade -->
+    <div class="fleet-card">
+      <div class="fleet-visual">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <ellipse cx="105" cy="147" rx="28" ry="13" fill="#1a1a20"/>
+          <ellipse cx="105" cy="144" rx="22" ry="10" fill="#2a2a32" stroke="#c9a96e" stroke-width="0.8"/>
+          <ellipse cx="105" cy="144" rx="8" ry="8" fill="#1a1a20" stroke="#c9a96e" stroke-width="0.5"/>
+          <ellipse cx="295" cy="147" rx="28" ry="13" fill="#1a1a20"/>
+          <ellipse cx="295" cy="144" rx="22" ry="10" fill="#2a2a32" stroke="#c9a96e" stroke-width="0.8"/>
+          <ellipse cx="295" cy="144" rx="8" ry="8" fill="#1a1a20" stroke="#c9a96e" stroke-width="0.5"/>
+          <path d="M55 144 L55 80 L70 60 L340 60 L360 78 L360 144 Z" fill="#1e1e26" stroke="#c9a96e" stroke-width="0.6"/>
+          <rect x="70" y="62" width="180" height="60" rx="1" fill="#0d1520" stroke="#c9a96e" stroke-width="0.4" opacity="0.85"/>
+          <line x1="160" y1="62" x2="160" y2="122" stroke="#c9a96e" stroke-width="0.4" opacity="0.4"/>
+          <rect x="48" y="106" width="22" height="12" rx="2" fill="#c9a96e" opacity="0.8"/>
+          <rect x="344" y="106" width="22" height="12" rx="2" fill="#c9a96e" opacity="0.5"/>
+          <text x="200" y="170" text-anchor="middle" fill="#c9a96e" font-size="8" font-family="Times New Roman" letter-spacing="4" opacity="0.5">E S C A L A D E</text>
+        </svg>
+        <div class="fleet-visual-overlay"></div>
+      </div>
+      <div class="fleet-body">
+        <div class="fleet-tag">Luxury SUV</div>
+        <div class="fleet-name">Cadillac Escalade ESV</div>
+        <p class="fleet-desc">Commanding road presence and a cavernous interior. Ideal for families, groups, and those who prefer elevated seating and a commanding view of the road. The Extended Wheelbase provides exceptional legroom for all three rows.</p>
+        <div class="fleet-specs-row">
+          <span class="spec-chip">6 Passengers</span>
+          <span class="spec-chip">7 Bags</span>
+          <span class="spec-chip">Wi-Fi</span>
+        </div>
+        <ul class="fleet-features">
+          <li>Extended wheelbase</li>
+          <li>Three-row luxury seating</li>
+          <li>38-inch OLED displays</li>
+          <li>AKG premium audio</li>
+          <li>Panoramic sunroof</li>
+          <li>Individual rear climate</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Lincoln Stretch -->
+    <div class="fleet-card">
+      <div class="fleet-visual">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <ellipse cx="85" cy="147" rx="26" ry="12" fill="#1a1a20"/>
+          <ellipse cx="85" cy="144" rx="20" ry="10" fill="#2a2a32" stroke="#c9a96e" stroke-width="0.8"/>
+          <ellipse cx="85" cy="144" rx="7" ry="7" fill="#1a1a20" stroke="#c9a96e" stroke-width="0.5"/>
+          <ellipse cx="315" cy="147" rx="26" ry="12" fill="#1a1a20"/>
+          <ellipse cx="315" cy="144" rx="20" ry="10" fill="#2a2a32" stroke="#c9a96e" stroke-width="0.8"/>
+          <ellipse cx="315" cy="144" rx="7" ry="7" fill="#1a1a20" stroke="#c9a96e" stroke-width="0.5"/>
+          <path d="M40 144 L40 96 Q55 72 100 68 L320 68 Q360 72 368 100 L368 144 Z" fill="#1e1e26" stroke="#c9a96e" stroke-width="0.6"/>
+          <path d="M105 96 L105 70 Q140 64 210 66 L290 67 Q320 70 326 88 L326 96 Z" fill="#0d1520" stroke="#c9a96e" stroke-width="0.4" opacity="0.88"/>
+          <line x1="200" y1="66" x2="200" y2="96" stroke="#c9a96e" stroke-width="0.3" opacity="0.4"/>
+          <line x1="155" y1="67" x2="155" y2="96" stroke="#c9a96e" stroke-width="0.3" opacity="0.3"/>
+          <line x1="256" y1="67" x2="256" y2="96" stroke="#c9a96e" stroke-width="0.3" opacity="0.3"/>
+          <rect x="34" y="110" width="20" height="10" rx="2" fill="#c9a96e" opacity="0.8"/>
+          <rect x="358" y="110" width="20" height="10" rx="2" fill="#c9a96e" opacity="0.5"/>
+          <text x="200" y="170" text-anchor="middle" fill="#c9a96e" font-size="8" font-family="Times New Roman" letter-spacing="3" opacity="0.5">S T R E T C H   L I M O</text>
+        </svg>
+        <div class="fleet-visual-overlay"></div>
+      </div>
+      <div class="fleet-body">
+        <div class="fleet-tag">Stretch Limousine</div>
+        <div class="fleet-name">Lincoln Continental Stretch</div>
+        <p class="fleet-desc">The classic statement. A privacy partition, crystal bar service, and mood lighting define the interior. Ideal for weddings, proms, bachelorette parties, and milestone events across New England.</p>
+        <div class="fleet-specs-row">
+          <span class="spec-chip">10 Passengers</span>
+          <span class="spec-chip">Bar Service</span>
+          <span class="spec-chip">Privacy Screen</span>
+        </div>
+        <ul class="fleet-features">
+          <li>Crystal bar & glassware</li>
+          <li>Mood lighting system</li>
+          <li>Privacy partition</li>
+          <li>Premium sound system</li>
+          <li>Champagne on request</li>
+          <li>Red-carpet arrival</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sprinter -->
+    <div class="fleet-card">
+      <div class="fleet-visual">
+        <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <ellipse cx="100" cy="148" rx="28" ry="12" fill="#1a1a20"/>
+          <ellipse cx="100" cy="145" rx="22" ry="10" fill="#2a2a32" stroke="#c9a96e" stroke-width="0.8"/>
+          <ellipse cx="100" cy="145" rx="8" ry="8" fill="#1a1a20" stroke="#c9a96e" stroke-width="0.5"/>
+          <ellipse cx="300" cy="148" rx="28" ry="12" fill="#1a1a20"/>
+          <ellipse cx="300" cy="145" rx="22" ry="10" fill="#2a2a32" stroke="#c9a96e" stroke-width="0.8"/>
+          <ellipse cx="300" cy="145" rx="8" ry="8" fill="#1a1a20" stroke="#c9a96e" stroke-width="0.5"/>
+          <path d="M45 145 L45 55 Q55 40 120 38 L340 38 L365 55 L365 145 Z" fill="#1e1e26" stroke="#c9a96e" stroke-width="0.6"/>
+          <rect x="55" y="42" width="200" height="72" rx="1" fill="#0d1520" stroke="#c9a96e" stroke-width="0.4" opacity="0.85"/>
+          <line x1="145" y1="42" x2="145" y2="114" stroke="#c9a96e" stroke-width="0.3" opacity="0.4"/>
+          <line x1="200" y1="42" x2="200" y2="114" stroke="#c9a96e" stroke-width="0.3" opacity="0.3"/>
+          <rect x="38" y="108" width="22" height="13" rx="2" fill="#c9a96e" opacity="0.8"/>
+          <rect x="350" y="108" width="22" height="13" rx="2" fill="#c9a96e" opacity="0.5"/>
+          <text x="220" y="170" text-anchor="middle" fill="#c9a96e" font-size="8" font-family="Times New Roman" letter-spacing="3" opacity="0.5">S P R I N T E R</text>
+        </svg>
+        <div class="fleet-visual-overlay"></div>
+      </div>
+      <div class="fleet-body">
+        <div class="fleet-tag">Executive Van</div>
+        <div class="fleet-name">Mercedes-Benz Sprinter</div>
+        <p class="fleet-desc">Corporate groups and event transfers in refined comfort. Conference-style seating, individual power outlets, and a partition for private conversation. The right choice when a sedan won't accommodate the group.</p>
+        <div class="fleet-specs-row">
+          <span class="spec-chip">14 Passengers</span>
+          <span class="spec-chip">Conference Seats</span>
+          <span class="spec-chip">Wi-Fi</span>
+        </div>
+        <ul class="fleet-features">
+          <li>Conference seating layout</li>
+          <li>Individual power outlets</li>
+          <li>Privacy partition</li>
+          <li>High-roof cabin</li>
+          <li>Luggage compartment</li>
+          <li>Wi-Fi & USB at every seat</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- STANDARDS -->
+<section class="standards-section">
+  <div class="section-eyebrow">Our Standards</div>
+  <div class="section-title">The condition of<br><em>every vehicle.</em></div>
+
+  <div class="standards-grid">
+    <div class="standard-card">
+      <div class="standard-num">I</div>
+      <h3 class="standard-title">Daily Inspection</h3>
+      <p class="standard-desc">Every vehicle is inspected before every assignment. No exceptions. A vehicle that does not meet our standards does not leave the lot.</p>
+    </div>
+    <div class="standard-card">
+      <div class="standard-num">II</div>
+      <h3 class="standard-title">Interior Detailing</h3>
+      <p class="standard-desc">Full interior detailing after every assignment. You will always enter a clean, fresh-smelling, immaculate vehicle.</p>
+    </div>
+    <div class="standard-card">
+      <div class="standard-num">III</div>
+      <h3 class="standard-title">Fleet Age Policy</h3>
+      <p class="standard-desc">We retire vehicles on a strict schedule. Our clients never travel in dated or high-mileage vehicles — our fleet is always current generation.</p>
+    </div>
+    <div class="standard-card">
+      <div class="standard-num">IV</div>
+      <h3 class="standard-title">Mechanical Maintenance</h3>
+      <p class="standard-desc">Preventive maintenance schedules, dealer-certified servicing, and roadside contingency protocols on every long-distance run.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="fleet-cta">
+  <h2>Select your <em>vehicle.</em></h2>
+  <p>Ready to reserve? Book online or contact our team to discuss the best vehicle for your journey.</p>
+  <div class="fleet-cta-btns">
+    <a href="contact.html" class="btn-primary">Make a Reservation</a>
+    <a href="services.html" class="btn-outline">View Services</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo" style="font-size:1.15rem;">Boston<span>LuxLimos</span></a>
+      <p>Greater New England's most trusted luxury car service since 2017. Serving all six states — 24 hours a day, 365 days a year.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="services.html">Airport Transfers</a></li>
+        <li><a href="services.html">Corporate Travel</a></li>
+        <li><a href="services.html">Special Events</a></li>
+        <li><a href="services.html">Hourly Charter</a></li>
+        <li><a href="services.html">Long Distance</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="fleet.html">Our Fleet</a></li>
+        <li><a href="contact.html">Reservations</a></li>
+        <li><a href="contact.html">Corporate Accounts</a></li>
+        <li><a href="index.html#book">Book Online</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+16175550190">+1 (617) 555-0190</a></li>
+        <li><a href="mailto:reservations@bostonluxlimos.com">reservations@bostonluxlimos.com</a></li>
+        <li><a href="#">Boston, Massachusetts</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 BostonLuxLimos LLC — Boston, Massachusetts. Est. 2017.</span>
+    <span>Licensed & Insured · MA Livery License</span>
+  </div>
+</footer>
+
+</body>
+</html>

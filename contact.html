@@ -339,6 +339,7 @@
     font-size: 0.7rem;
   }
 </style>
+<link rel="stylesheet" href="refresh.css">
 </head>
 <body>
 
@@ -365,7 +366,7 @@
 
     <div class="contact-detail-block">
       <h4>Reservations Line</h4>
-      <a href="tel:+16175550190">+1 (617) 555-0190</a>
+      <a href="mailto:reservations@bostonluxlimos.com">Email reservations</a>
       <p style="font-size:0.72rem; color:var(--silver); margin-top:0.3rem;">Available 24 hours a day</p>
     </div>
 
@@ -393,86 +394,18 @@
     </div>
   </div>
 
-  <!-- BOOKING PANEL -->
-  <div class="booking-panel">
+  <!-- RESERVATION INQUIRY PANEL -->
+  <div class="booking-panel" id="inquiry">
     <div class="booking-panel-header">
-      <h3>Reserve <em>Online</em></h3>
-      <p>Use our booking system below for instant confirmation — available any time of day.</p>
+      <h3>Request a <em>Quote</em></h3>
+      <p>Submit your itinerary for review. Availability and pricing are confirmed by our reservations team, not automatically.</p>
     </div>
-
-    <!-- ════════════════════════════════════════════════════════
-         BOOKING SOFTWARE EMBED — PASTE YOUR CODE IN THIS BLOCK
-         Replace the .booking-software-area div with your embed,
-         e.g.:
-           <iframe src="https://your-booking-platform.com/embed/bostonluxlimos"
-                   width="100%" height="500" frameborder="0"></iframe>
-         or your platform's JavaScript widget snippet.
-         ════════════════════════════════════════════════════════ -->
-    <div class="booking-software-area">
-      <p class="embed-label">Online Booking System</p>
-      <p class="embed-note">Paste your booking software embed code here — your widget will appear in this space.</p>
-      <code>&lt;!-- Your booking embed goes here --&gt;</code>
-    </div>
-
-    <div class="divider-or">
-      <span>or submit an inquiry</span>
-    </div>
-
-    <!-- FALLBACK INQUIRY FORM -->
+    <!-- EMAIL-BASED INQUIRY (NO CUSTOMER DATA SENT TO AN UNCONFIGURED SERVER) -->
     <div class="inquiry-form">
-      <h4>Send an Inquiry</h4>
-      <div class="form-row">
-        <div class="form-field">
-          <label>First Name</label>
-          <input type="text" placeholder="First name">
-        </div>
-        <div class="form-field">
-          <label>Last Name</label>
-          <input type="text" placeholder="Last name">
-        </div>
-      </div>
-      <div class="form-field">
-        <label>Email Address</label>
-        <input type="email" placeholder="your@email.com">
-      </div>
-      <div class="form-field">
-        <label>Phone Number</label>
-        <input type="tel" placeholder="+1 (617) ...">
-      </div>
-      <div class="form-row">
-        <div class="form-field">
-          <label>Date</label>
-          <input type="date">
-        </div>
-        <div class="form-field">
-          <label>Time</label>
-          <input type="time">
-        </div>
-      </div>
-      <div class="form-field">
-        <label>Vehicle</label>
-        <select>
-          <option value="" disabled selected>Select a vehicle</option>
-          <option>Mercedes-Benz S-Class (1–3 passengers)</option>
-          <option>Cadillac Escalade ESV (1–6 passengers)</option>
-          <option>Lincoln Continental Stretch (up to 10)</option>
-          <option>Mercedes-Benz Sprinter (up to 14)</option>
-          <option>Not sure — advise me</option>
-        </select>
-      </div>
-      <div class="form-field">
-        <label>Pickup Location</label>
-        <input type="text" placeholder="Address, airport, or hotel">
-      </div>
-      <div class="form-field">
-        <label>Destination</label>
-        <input type="text" placeholder="Address, hotel, or city">
-      </div>
-      <div class="form-field">
-        <label>Additional Notes</label>
-        <textarea placeholder="Flight number, special requests, event details..."></textarea>
-      </div>
-      <a href="#" class="btn-primary" style="display:block; text-align:center; width:100%;">Submit Inquiry</a>
+      <h4>Reservation Request</h4>
+      <p>Please email your pickup date and time, pickup and destination addresses, passenger count, preferred vehicle type, and any flight details. Do not include payment card information.</p>
+      <a href="mailto:reservations@bostonluxlimos.com?subject=BostonLuxLimos%20Transportation%20Quote%20Request&body=Pickup%20date%20and%20time%3A%0APickup%20location%3A%0ADestination%3A%0APassengers%3A%0AVehicle%20preference%3A%0AFlight%20information%20(if%20applicable)%3A%0AAdditional%20requests%3A" class="btn-primary" style="display:block;text-align:center;">Compose Reservation Request</a>
+      <p style="margin-top:1rem;">This opens your email application. Your trip is not booked until availability and confirmation are provided.</p>
     </div>
   </div>
 </section>
@@ -482,14 +415,14 @@
   <div class="quick-grid">
     <div class="quick-card">
       <div class="quick-icon">☎</div>
-      <h3>Call Us</h3>
-      <p>Speak directly with a dispatcher any time of day or night — no automated systems.</p>
-      <a href="tel:+16175550190">+1 (617) 555-0190</a>
+      <h3>Reservations</h3>
+      <p>Contact our reservations team with your itinerary and questions.</p>
+      <a href="mailto:reservations@bostonluxlimos.com">Email reservations</a>
     </div>
     <div class="quick-card">
       <div class="quick-icon">✉</div>
       <h3>Email</h3>
-      <p>Send your itinerary and we'll confirm availability and pricing within the hour.</p>
+      <p>Send your itinerary for availability and pricing review.</p>
       <a href="mailto:reservations@bostonluxlimos.com">reservations@bostonluxlimos.com</a>
     </div>
     <div class="quick-card">
@@ -530,7 +463,7 @@
   <div class="footer-top">
     <div class="footer-brand">
       <a href="index.html" class="nav-logo" style="font-size:1.15rem;">Boston<span>LuxLimos</span></a>
-      <p>Greater New England's most trusted luxury car service since 2017. Serving all six states — 24 hours a day, 365 days a year.</p>
+      <p>Luxury private transportation across New England. Serving all six states — 24 hours a day, 365 days a year.</p>
     </div>
     <div class="footer-col">
       <h4>Services</h4>
@@ -548,20 +481,20 @@
         <li><a href="fleet.html">Our Fleet</a></li>
         <li><a href="contact.html">Reservations</a></li>
         <li><a href="contact.html">Corporate Accounts</a></li>
-        <li><a href="index.html#book">Book Online</a></li>
+        <li><a href="index.html#book">Request a Quote</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Contact</h4>
       <ul>
-        <li><a href="tel:+16175550190">+1 (617) 555-0190</a></li>
+        <li><a href="mailto:reservations@bostonluxlimos.com">Email reservations</a></li>
         <li><a href="mailto:reservations@bostonluxlimos.com">reservations@bostonluxlimos.com</a></li>
         <li><a href="#">Boston, Massachusetts</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 BostonLuxLimos LLC — Boston, Massachusetts. Est. 2017.</span>
+    <span>© 2025 BostonLuxLimos — Boston, Massachusetts.</span>
     <span>Licensed & Insured · MA Livery License</span>
   </div>
 </footer>

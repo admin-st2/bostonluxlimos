@@ -1,80 +1,85 @@
-/* BostonLuxLimos distinct identity: pearl, midnight navy, slate blue and silver.
-   STRUT2 retains its separate warm neutral / gold brand. */
+/* BostonLuxLimos refinement: retain its original noir, champagne gold and ivory.
+   The light editorial sections break up the former uninterrupted dark layout.
+   STRUT2's website and brand stylesheet are untouched. */
 :root {
-  --pearl:#f8fafc;
-  --snow:#ffffff;
-  --mist:#edf2f6;
-  --midnight:#101e33;
-  --navy:#203653;
-  --slate:#456780;
-  --steel:#63788a;
-  --silver-blue:#c3d1dc;
-  --text:#263b50;
-  --secondary-text:#526477;
-  --obsidian:#101e33;
-  --deep-noir:#172a43;
-  --charcoal:#243c57;
-  --smoke:#38516d;
-  --champagne:#91b2c7;
-  --champagne-light:#b6d4e4;
-  --champagne-pale:#dce9f0;
-  --muted-gold:#577e99;
-  --ivory:#f8fafc;
-  --silver:#c3d1dc;
-  --light-silver:#e0e9ee;
+  --obsidian:#0a0a0c;
+  --deep-noir:#111114;
+  --charcoal:#1a1a20;
+  --smoke:#2a2a32;
+  --champagne:#c9a96e;
+  --champagne-light:#e4c99a;
+  --champagne-pale:#f5e8d0;
+  --ivory:#f8f4ec;
+  --muted-gold:#8a6e3e;
+  --silver:#a7a5aa;
+  --light-silver:#d3ced0;
+  --paper:#f8f5f0;
+  --paper-white:#fffdf9;
+  --sand:#eee7dd;
+  --ink:#28242a;
+  --body-ink:#555058;
+  --gold-ink:#826032;
 }
-body {background:var(--pearl);color:var(--text);}
-nav {background:rgba(16,30,51,.96);border-color:rgba(195,209,220,.25);}
-.nav-cta,.btn-primary {background:var(--slate);color:#fff;}
-.nav-cta:hover,.btn-primary:hover {background:var(--navy);color:#fff;}
-.btn-outline {border-color:var(--slate);color:var(--navy);}
-.btn-outline:hover {color:var(--slate);border-color:var(--slate);}
-.section-eyebrow,.service-tag,.contact-detail-block h4 {color:var(--slate);}
-.section-title,.section-title em,.page-hero h1 {letter-spacing:-.025em;}
-.page-hero {background:var(--midnight);}
-.hero-bg {background:linear-gradient(125deg,#101e33 0%,#254461 58%,#172a43 100%);}
-.stats-bar {background:#e4edf3;}
-.stat-num {color:var(--navy);}
-.skyline-section,.illustration-strip,.services-preview,.transport-hubs,
-.coverage-band,.booking-section,.testimonials,.logo-showcase,
-.fleet-intro,.fleet-section,.services-full,.contact-layout,
-.quick-contact,.corporate-section {background:var(--pearl);color:var(--text);}
-.services-grid,.hubs-grid,.testimonials-grid,.fleet-grid {background:var(--silver-blue);}
-.service-card,.hub-card,.testimonial-card,.fleet-card,.car-illustration,
-.quick-card,.booking-box,.booking-panel,.inquiry-form {background:var(--snow);}
-.service-card:hover,.hub-card:hover,.fleet-card:hover,.car-illustration:hover,
-.quick-card:hover {background:var(--mist);}
-.skyline-section h2,.skyline-text h2,.fleet-intro h2,.service-left h2,
-.contact-info h2,.booking-box h2,.booking-panel h3,.service-name,
-.service-card h3,.section-title,.coverage-band h2,.corporate-section h2 {color:var(--midnight);}
+body {background:var(--paper);}
+nav {background:rgba(10,10,12,.96);}
+.hero-bg {background:radial-gradient(ellipse at 75% 40%,rgba(201,169,110,.14),transparent 58%),linear-gradient(145deg,#0c0b0e,#272127 55%,#111114);}
+.page-hero {background:linear-gradient(120deg,#111114,#292329);}
+.section-eyebrow,.service-tag,.contact-detail-block h4 {color:var(--gold-ink);}
+
+/* Alternating light surfaces replace long, uninterrupted black bands. */
+.skyline-section,.illustration-strip,.services-preview,.coverage-band,
+.booking-section,.logo-showcase,.fleet-intro,.services-full,.contact-layout,
+.quick-contact {background:var(--paper);color:var(--ink);}
+.stats-bar {background:var(--paper-white);}
+.services-grid,.fleet-grid {background:#ded5c8;}
+.service-card,.fleet-card,.car-illustration,.booking-box,.booking-panel,
+.inquiry-form,.quick-card {background:var(--paper-white);}
+.service-card:hover,.fleet-card:hover,.car-illustration:hover,.quick-card:hover {background:var(--sand);}
+.skyline-text h2,.fleet-intro h2,.service-left h2,.contact-info h2,
+.booking-box h2,.booking-panel h3,.service-name,.section-title,
+.coverage-band h2 {color:var(--ink);}
 .skyline-text p,.fleet-intro p,.service-right p,.contact-info > p,
-.booking-box > p,.service-desc,.service-card p,.hub-card p,
-.testimonial-role,.contact-detail-block p,.contact-detail-block a,
-.logo-tagline {color:var(--secondary-text);}
-.testimonial-text {color:var(--midnight);}
-.section-title em,.service-left h2 em,.booking-box h2 em,
-.fleet-intro h2 em,.contact-info h2 em {color:var(--slate);}
-.service-num {color:var(--steel);}
-.skyline-image-wrap {background:var(--mist);border-color:#cddce6;}
+.booking-box > p,.service-desc,.service-card p,.contact-detail-block p,
+.contact-detail-block a,.logo-tagline {color:var(--body-ink);}
+.stat-num,.section-title em,.service-left h2 em,.booking-box h2 em,
+.fleet-intro h2 em,.contact-info h2 em {color:var(--gold-ink);}
+.skyline-image-wrap {background:#ebe5db;border-color:#d5c7b2;}
 .skyline-image-wrap img {filter:none;mix-blend-mode:normal;opacity:1;}
 .skyline-image-wrap::after {background:none;}
-.booking-box,.booking-panel {border:1px solid #cfdae3;box-shadow:0 14px 45px rgba(16,30,51,.07);}
-.booking-box .btn-primary,.booking-panel .btn-primary {background:var(--slate);color:#fff;}
-.booking-box .btn-primary:hover,.booking-panel .btn-primary:hover {background:var(--navy);}
-.booking-box .booking-embed-placeholder,.booking-software-area {display:none;}
-.contact-layout input,.contact-layout select,.contact-layout textarea {background:#fff;color:var(--midnight);border-color:#c7d4df;}
-.contact-layout input::placeholder,.contact-layout textarea::placeholder {color:#657789;}
-/* Dark framing makes the bright editorial center feel intentional. */
-footer {background:var(--midnight);}
-footer .footer-bottom {border-color:rgba(195,209,220,.2);}
-footer a:hover {color:var(--champagne-light);}
-a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible {
- outline:3px solid #68a7d0;outline-offset:3px;
-}
+.booking-box,.booking-panel {border:1px solid #dccdb7;box-shadow:0 14px 45px rgba(27,20,12,.07);}
+.booking-box .btn-primary,.booking-panel .btn-primary {background:#a17b43;color:#fff;}
+.booking-box .btn-primary:hover,.booking-panel .btn-primary:hover {background:#795829;}
+.contact-layout input,.contact-layout select,.contact-layout textarea {background:#fffdf9;color:var(--ink);border-color:#d7cbbc;}
+.contact-layout input::placeholder,.contact-layout textarea::placeholder {color:#777077;}
+.booking-embed-placeholder,.booking-software-area {display:none;}
+
+/* Keep selected deep-noir bands for contrast and a recognizable signature. */
+.transport-hubs,.testimonials,.corporate-section,.fleet-section {background:var(--deep-noir);color:var(--ivory);}
+.transport-hubs .section-title,.testimonials .section-title,
+.corporate-section h2,.fleet-section .section-title {color:var(--ivory);}
+.transport-hubs .section-eyebrow,.testimonials .section-eyebrow,
+.fleet-section .section-eyebrow {color:var(--champagne);}
+.transport-hubs .section-title em,.testimonials .section-title em,
+.fleet-section .section-title em {color:var(--champagne);}
+.hubs-grid,.testimonials-grid {background:rgba(201,169,110,.12);}
+.hub-card,.testimonial-card {background:var(--charcoal);}
+.hub-card:hover {background:#28252b;}
+.hub-card p,.testimonial-role {color:var(--light-silver);}
+.testimonial-text {color:var(--champagne-pale);}
+.testimonial-author {color:var(--champagne);}
+.fleet-section .fleet-card {background:var(--charcoal);}
+.fleet-section .fleet-card:hover {background:#28252b;}
+.fleet-section .fleet-card h2,.fleet-section .fleet-card h3,
+.fleet-section .fleet-card p {color:var(--ivory);}
+
+/* Keep footer and navigation dark, with champagne links and buttons. */
+footer {background:var(--obsidian);}
+a:focus-visible,button:focus-visible,input:focus-visible,
+textarea:focus-visible,select:focus-visible {outline:3px solid #c9a96e;outline-offset:3px;}
 @media(max-width:800px) {
- .skyline-section,.fleet-intro,.contact-layout {gap:2rem;}
- .booking-box {padding:2.3rem 1.4rem;}
+  .skyline-section,.fleet-intro,.contact-layout {gap:2rem;}
+  .booking-box {padding:2.3rem 1.4rem;}
 }
 @media(prefers-reduced-motion:reduce) {
- *,*::before,*::after {animation-duration:.01ms!important;scroll-behavior:auto!important;}
+  *,*::before,*::after {animation-duration:.01ms!important;scroll-behavior:auto!important;}
 }

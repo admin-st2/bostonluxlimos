@@ -1,0 +1,48 @@
+/* Light luxury refresh: editorial ivory surfaces with a dark premium hero and footer.
+   Loaded after page-level styles to avoid changing the original design files. */
+:root { --cream:#f8f5ef; --paper:#fffdfa; --sand:#ede7db; --ink:#222326; --body-ink:#4b4b4b; --accent-ink:#826330; }
+body { background:var(--cream); }
+.section-eyebrow,.service-tag,.contact-detail-block h4 {color:var(--accent-ink);}
+.section-title,.section-title em,.page-hero h1 {letter-spacing:-.025em;}
+/* Bring light and breathing room to the long scrolling content. */
+.skyline-section,.illustration-strip,.services-preview,.transport-hubs,
+.coverage-band,.booking-section,.testimonials,.logo-showcase,
+.fleet-intro,.fleet-section,.services-full,.contact-layout,
+.quick-contact,.corporate-section {background:var(--cream);color:var(--ink);}
+.stats-bar {background:var(--paper);}
+.services-grid,.hubs-grid,.testimonials-grid,.fleet-grid {background:var(--sand);}
+.service-card,.hub-card,.testimonial-card,.fleet-card,.car-illustration,
+.quick-card,.booking-box,.booking-panel,.inquiry-form {background:var(--paper);}
+.service-card:hover,.hub-card:hover,.fleet-card:hover,.car-illustration:hover,
+.quick-card:hover {background:#f3ede3;}
+.skyline-section h2,.skyline-text h2,.fleet-intro h2,.service-left h2,
+.contact-info h2,.booking-box h2,.booking-panel h3,
+.service-name,.service-card h3,.section-title,
+.coverage-band h2,.corporate-section h2 {color:var(--ink);}
+.skyline-text p,.fleet-intro p,.service-right p,.contact-info > p,
+.booking-box > p,.service-desc,.service-card p,.hub-card p,
+.testimonial-role,.contact-detail-block p,.contact-detail-block a,
+.logo-tagline {color:var(--body-ink);}
+.testimonial-text {color:var(--ink);}
+.stat-num,.service-num,.section-title em,.service-left h2 em,.booking-box h2 em,
+.fleet-intro h2 em,.contact-info h2 em {color:var(--accent-ink);}
+.skyline-image-wrap {background:#eee9e0;}
+.skyline-image-wrap img {filter:none;mix-blend-mode:normal;opacity:1;}
+.skyline-image-wrap::after {background:none;}
+.booking-box,.booking-panel {border:1px solid #ded3c0;box-shadow:0 14px 45px rgba(29,27,24,.06);}
+.booking-box .btn-primary,.booking-panel .btn-primary {background:#a3834e;color:#fff;}
+.booking-box .btn-primary:hover,.booking-panel .btn-primary:hover {background:#826330;}
+.booking-box .booking-embed-placeholder,.booking-software-area {display:none;}
+.contact-layout input,.contact-layout select,.contact-layout textarea {background:#fff;color:var(--ink);border-color:#d8cfbf;}
+.contact-layout input::placeholder,.contact-layout textarea::placeholder {color:#777;}
+/* Keep navigation, hero and footer dark for recognizable luxury contrast. */
+nav,.page-hero,footer {color:var(--ivory);}
+.page-hero {background:#242226;}
+.hero-bg {background:linear-gradient(135deg,#242126,#423a33 56%,#18181b);}
+@media(max-width:800px) {
+ .skyline-section,.fleet-intro,.contact-layout {gap:2rem;}
+ .booking-box {padding:2.3rem 1.4rem;}
+}
+@media(prefers-reduced-motion:reduce) {
+ *,*::before,*::after {animation-duration:.01ms!important;scroll-behavior:auto!important;}
+}

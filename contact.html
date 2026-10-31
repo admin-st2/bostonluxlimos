@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact & Reservations — BostonLuxLimos</title>
+<title>Request a Private Car Quote | BostonLuxLimos New England</title>
 <link rel="stylesheet" href="style.css">
 <style>
   .contact-layout {
@@ -358,148 +358,60 @@
 </div>
 
 <!-- MAIN CONTACT LAYOUT -->
-<section class="contact-layout">
+<section class="contact-layout" id="quote">
   <div class="contact-info">
-    <h2>Reach us<br><em>any time.</em></h2>
-    <p>Our reservations team is available 24 hours a day, every day of the year. Whether you're booking a last-minute airport transfer or planning a multi-day itinerary, we're here.</p>
-
-    <div class="contact-detail-block">
-      <h4>Reservations Line</h4>
-      <a href="contact.html#quote">Request a Quote</a>
-      <p style="font-size:0.72rem; color:var(--silver); margin-top:0.3rem;">Available 24 hours a day</p>
-    </div>
-
-    <div class="contact-detail-block">
-      <h4>Email</h4>
-      <a href="mailto:reservations@bostonluxlimos.com">reservations@bostonluxlimos.com</a>
-      <p style="font-size:0.72rem; color:var(--silver); margin-top:0.3rem;">Response within 60 minutes</p>
-    </div>
-
-    <div class="contact-detail-block">
-      <h4>Corporate Accounts</h4>
-      <a href="mailto:reservations@bostonluxlimos.com?subject=Corporate%20transportation%20inquiry">corporate@bostonluxlimos.com</a>
-      <p style="font-size:0.72rem; color:var(--silver); margin-top:0.3rem;">Open an account for your business</p>
-    </div>
-
-    <div class="contact-detail-block">
-      <h4>Based In</h4>
-      <p>Boston, Massachusetts</p>
-      <p style="font-size:0.8rem; color:var(--silver); margin-top:0.3rem;">Serving all six New England states</p>
-    </div>
-
-    <div class="availability-badge">
-      <span class="availability-dot"></span>
-      Dispatchers Available Now
-    </div>
+    <h2>Tell us about<br><em>your journey.</em></h2>
+    <p>Request your personalized transportation quote. We'll review your itinerary, check availability, and respond with the next steps. An inquiry is not a confirmed reservation.</p>
+    <div class="contact-detail-block"><h4>Reservations email</h4><a href="mailto:reservations@bostonluxlimos.com">reservations@bostonluxlimos.com</a></div>
+    <div class="contact-detail-block"><h4>Corporate inquiries</h4><a href="mailto:reservations@bostonluxlimos.com?subject=Corporate%20transportation%20inquiry">Email our reservations team</a></div>
+    <div class="contact-detail-block"><h4>Service area</h4><p>Greater Boston and New England, by arrangement</p></div>
+    <p style="font-size:0.8rem;color:var(--silver);">We're confirming the public reservations phone number. For now, please email your inquiry.</p>
   </div>
-
-  <!-- BOOKING PANEL -->
   <div class="booking-panel">
     <div class="booking-panel-header">
-      <h3>Reserve <em>Online</em></h3>
-      <p>Use our booking system below for instant confirmation — available any time of day.</p>
+      <h3>Request a <em>Quote</em></h3>
+      <p>This form prepares an email in your own mail app. Review the message and press Send to deliver the request. This is not instant booking.</p>
     </div>
-
-    <!-- ════════════════════════════════════════════════════════
-         BOOKING SOFTWARE EMBED — PASTE YOUR CODE IN THIS BLOCK
-         Replace the .booking-software-area div with your embed,
-         e.g.:
-           <iframe src="https://your-booking-platform.com/embed/bostonluxlimos"
-                   width="100%" height="500" frameborder="0"></iframe>
-         or your platform's JavaScript widget snippet.
-         ════════════════════════════════════════════════════════ -->
-    <div class="booking-software-area">
-      <p class="embed-label">Online Booking System</p>
-      <p class="embed-note">Paste your booking software embed code here — your widget will appear in this space.</p>
-      <code>&lt;!-- Your booking embed goes here --&gt;</code>
-    </div>
-
-    <div class="divider-or">
-      <span>or submit an inquiry</span>
-    </div>
-
-    <!-- FALLBACK INQUIRY FORM -->
-    <div class="inquiry-form">
-      <h4>Send an Inquiry</h4>
+    <form id="quote-form" class="inquiry-form">
       <div class="form-row">
-        <div class="form-field">
-          <label>First Name</label>
-          <input type="text" placeholder="First name">
-        </div>
-        <div class="form-field">
-          <label>Last Name</label>
-          <input type="text" placeholder="Last name">
-        </div>
-      </div>
-      <div class="form-field">
-        <label>Email Address</label>
-        <input type="email" placeholder="your@email.com">
-      </div>
-      <div class="form-field">
-        <label>Phone Number</label>
-        <input type="tel" placeholder="+1 (617) ...">
+        <div class="form-field"><label for="q-name">Name *</label><input id="q-name" name="name" type="text" autocomplete="name" required maxlength="100" placeholder="Your name"></div>
+        <div class="form-field"><label for="q-email">Email *</label><input id="q-email" name="email" type="email" autocomplete="email" required maxlength="150" placeholder="you@example.com"></div>
       </div>
       <div class="form-row">
-        <div class="form-field">
-          <label>Date</label>
-          <input type="date">
+        <div class="form-field"><label for="q-phone">Telephone (optional)</label><input id="q-phone" name="phone" type="tel" autocomplete="tel" maxlength="35" placeholder="Preferred callback number"></div>
+        <div class="form-field"><label for="q-type">Service *</label>
+          <select id="q-type" name="service" required>
+            <option value="" selected disabled>Select a service</option>
+            <option>Airport transfer</option><option>Corporate transportation</option><option>Wedding transportation</option>
+            <option>Special event</option><option>Hourly charter</option><option>Long-distance travel</option>
+          </select>
         </div>
-        <div class="form-field">
-          <label>Time</label>
-          <input type="time">
-        </div>
       </div>
-      <div class="form-field">
-        <label>Vehicle</label>
-        <select>
-          <option value="" disabled selected>Select a vehicle</option>
-          <option>Mercedes-Benz S-Class (1–3 passengers)</option>
-          <option>Cadillac Escalade ESV (1–6 passengers)</option>
-          <option>Lincoln Continental Stretch (up to 10)</option>
-          <option>Mercedes-Benz Sprinter (up to 14)</option>
-          <option>Not sure — advise me</option>
-        </select>
+      <div class="form-row">
+        <div class="form-field"><label for="q-date">Trip date *</label><input id="q-date" name="date" type="date" required></div>
+        <div class="form-field"><label for="q-time">Pickup time *</label><input id="q-time" name="time" type="time" required></div>
       </div>
-      <div class="form-field">
-        <label>Pickup Location</label>
-        <input type="text" placeholder="Address, airport, or hotel">
+      <div class="form-row">
+        <div class="form-field"><label for="q-passengers">Passengers *</label><input id="q-passengers" name="passengers" type="number" min="1" max="40" required placeholder="Number"></div>
+        <div class="form-field"><label for="q-trip">Journey</label><select id="q-trip" name="journey"><option>One way</option><option>Round trip</option><option>Hourly</option></select></div>
       </div>
-      <div class="form-field">
-        <label>Destination</label>
-        <input type="text" placeholder="Address, hotel, or city">
-      </div>
-      <div class="form-field">
-        <label>Additional Notes</label>
-        <textarea placeholder="Flight number, special requests, event details..."></textarea>
-      </div>
-      <a href="#" class="btn-primary" style="display:block; text-align:center; width:100%;">Submit Inquiry</a>
-    </div>
+      <div class="form-field"><label for="q-pickup">Pickup location *</label><input id="q-pickup" name="pickup" type="text" maxlength="200" required placeholder="Airport, hotel or address"></div>
+      <div class="form-field"><label for="q-destination">Destination *</label><input id="q-destination" name="destination" type="text" maxlength="200" required placeholder="Airport, hotel or address"></div>
+      <div class="form-field"><label for="q-notes">Additional details (optional)</label><textarea id="q-notes" name="notes" maxlength="750" placeholder="Flight, return pickup, vehicle requirements..."></textarea></div>
+      <button type="submit" class="btn-primary" style="display:block;width:100%;border:0;cursor:pointer;">Prepare Quote Request Email</button>
+      <p id="quote-status" role="status" aria-live="polite" style="font-size:0.8rem;color:var(--champagne-pale);margin:1rem 0;">Your email app must open and you must press Send. No information is transmitted automatically by this form.</p>
+      <button id="quote-copy" type="button" class="btn-outline" style="cursor:pointer;width:100%;">Copy Quote Details Instead</button>
+      <p style="font-size:0.75rem;color:var(--silver);line-height:1.6;margin-top:1rem;">Do not include payment-card or sensitive personal information in your request.</p>
+    </form>
   </div>
 </section>
 
 <!-- QUICK CONTACT CARDS -->
-<section class="quick-contact">
-  <div class="quick-grid">
-    <div class="quick-card">
-      <div class="quick-icon">☎</div>
-      <h3>Call Us</h3>
-      <p>Speak directly with a dispatcher any time of day or night — no automated systems.</p>
-      <a href="contact.html#quote">Request a Quote</a>
-    </div>
-    <div class="quick-card">
-      <div class="quick-icon">✉</div>
-      <h3>Email</h3>
-      <p>Send your itinerary and we'll confirm availability and pricing within the hour.</p>
-      <a href="mailto:reservations@bostonluxlimos.com">reservations@bostonluxlimos.com</a>
-    </div>
-    <div class="quick-card">
-      <div class="quick-icon">◎</div>
-      <h3>Corporate Accounts</h3>
-      <p>Monthly billing, priority dispatch, and a dedicated account manager for your business.</p>
-      <a href="mailto:reservations@bostonluxlimos.com?subject=Corporate%20transportation%20inquiry">Open an Account</a>
-    </div>
-  </div>
-</section>
+<section class="quick-contact"><div class="quick-grid">
+  <div class="quick-card"><div class="quick-icon">✈</div><h3>Airport Transfers</h3><p>Arrange an airport transfer itinerary.</p><a href="contact.html?service=airport#quote">Airport Quote</a></div>
+  <div class="quick-card"><div class="quick-icon">◎</div><h3>Corporate Travel</h3><p>Professional chauffeured travel.</p><a href="contact.html?service=corporate#quote">Corporate Quote</a></div>
+  <div class="quick-card"><div class="quick-icon">◇</div><h3>Special Events</h3><p>Private transport for your occasion.</p><a href="contact.html?service=wedding#quote">Event Quote</a></div>
+</div></section>
 
 <!-- CORPORATE SECTION -->
 <section class="corporate-section">
@@ -507,20 +419,20 @@
     <div>
       <h2>Open a<br><em>Corporate Account.</em></h2>
       <p>Businesses across Greater Boston rely on BostonLuxLimos for employee travel, client entertainment, and executive ground transport. Our corporate accounts simplify the logistics entirely.</p>
-      <p>One point of contact. One monthly invoice. Priority vehicle allocation and a dedicated account manager who knows your team's preferences.</p>
+      <p>Discuss your travel needs with our reservations team. Corporate account and billing arrangements are available on approval.</p>
     </div>
     <div>
       <ul class="corp-benefits">
-        <li>Dedicated account manager</li>
-        <li>Consolidated monthly invoicing</li>
+        <li>Corporate booking coordination</li>
+        <li>Invoicing options on approval</li>
         <li>Priority scheduling & vehicle allocation</li>
-        <li>Multi-employee booking portal</li>
+        <li>Multi-traveler itinerary coordination</li>
         <li>Confidential travel records</li>
-        <li>Volume discounts</li>
+        <li>Individual account proposals</li>
         <li>Prearranged reservations support</li>
         <li>Custom billing codes per department</li>
       </ul>
-      <a href="mailto:reservations@bostonluxlimos.com?subject=Corporate%20transportation%20inquiry" class="btn-primary">Enquire About Corporate Rates</a>
+      <a href="contact.html?service=corporate#quote" class="btn-primary">Request Corporate Transportation</a>
     </div>
   </div>
 </section>
@@ -566,5 +478,45 @@
   </div>
 </footer>
 
+<script>
+(function () {
+  const form = document.getElementById('quote-form');
+  const message = document.getElementById('quote-status');
+  if (!form) return;
+  const match = {airport:'Airport transfer',corporate:'Corporate transportation',wedding:'Wedding transportation',event:'Special event',hourly:'Hourly charter'};
+  const preferred = new URLSearchParams(location.search).get('service');
+  if (preferred && match[preferred]) document.getElementById('q-type').value = match[preferred];
+  const dateField = document.getElementById('q-date');
+  const today = new Date();
+  dateField.min = new Date(today.getTime() - today.getTimezoneOffset()*60000).toISOString().slice(0,10);
+  function text() {
+    const d = new FormData(form);
+    return [
+      'BostonLuxLimos Transportation Quote Request','',
+      ...['name','email','phone','service','date','time','passengers','journey','pickup','destination','notes']
+        .map(key => key+': '+(d.get(key)||'Not provided')),
+      '', 'Please respond with availability and an itemized quote.',
+      'I understand this is an inquiry, not a confirmed reservation.'
+    ].join('\n');
+  }
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+    const mail = 'mailto:reservations@bostonluxlimos.com?subject='+encodeURIComponent('Quote request '+dateField.value)+'&body='+encodeURIComponent(text());
+    message.textContent = 'Your email draft should open now. Please review it and press Send. If your mail app does not open, use Copy Quote Details Instead.';
+    if (typeof window.gtag === 'function') window.gtag('event','quote_email_draft');
+    location.href = mail;
+  });
+  document.getElementById('quote-copy').addEventListener('click', async function () {
+    if (!form.reportValidity()) return;
+    try {
+      await navigator.clipboard.writeText(text());
+      message.textContent = 'Quote details copied. Please email them to reservations@bostonluxlimos.com; copying does not submit your request.';
+    } catch (error) {
+      message.textContent = 'Copy unavailable. Please email your itinerary directly to reservations@bostonluxlimos.com.';
+    }
+  });
+})();
+</script>
 </body>
 </html>

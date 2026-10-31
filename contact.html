@@ -8,6 +8,7 @@
 <link rel="canonical" href="https://bostonluxlimos.com/contact.html">
 <link rel="stylesheet" href="style.css">
 <style>
+  [hidden] { display: none !important; }
   .contact-layout {
     padding: 6rem 5vw;
     background: var(--obsidian);
@@ -379,6 +380,20 @@
       <h3>Request a <em>Quote</em></h3>
       <p>Request a quote using your email application: this form prepares a message for you to review and send. If your email app does not open, call our reservations line or email us directly. This is not an instant booking system.</p>
     </div>
+    <!-- Workspace Google Form: activated only when a published form URL is configured. -->
+    <section id="workspace-quote" hidden aria-label="Google Workspace transportation quote request">
+      <iframe id="workspace-form-frame" title="BostonLuxLimos Transportation Quote Request"
+        loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
+        style="width:100%;min-height:900px;border:0;background:#fff;border-radius:4px;display:block;"></iframe>
+      <p style="font-size:0.78rem;color:var(--silver);line-height:1.7;margin-top:0.9rem;">
+        Having trouble viewing the form? <a id="workspace-form-link" target="_blank"
+        rel="noopener noreferrer" style="color:var(--champagne-pale);text-decoration:underline;">Open the secure Google Form in a new tab</a>.
+      </p>
+      <p style="font-size:0.76rem;color:var(--silver);line-height:1.65;margin-top:0.75rem;">
+        Submitting a quote request does not confirm a reservation. We will contact you with availability and pricing.
+      </p>
+    </section>
+    <div id="mail-fallback">
     <form id="quote-form" class="inquiry-form">
       <div class="form-row">
         <div class="form-field"><label for="q-name">Name *</label><input id="q-name" name="name" type="text" autocomplete="name" required maxlength="100" placeholder="Your name"></div>
@@ -410,6 +425,7 @@
       <button id="quote-copy" type="button" class="btn-outline" style="cursor:pointer;width:100%;">Copy Quote Details Instead</button>
       <p style="font-size:0.75rem;color:var(--silver);line-height:1.6;margin-top:1rem;">Do not include payment-card or sensitive personal information in your request.</p>
     </form>
+    </div><!-- end temporary mail fallback -->
   </div>
 </section>
 
@@ -486,6 +502,31 @@
   </div>
 </footer>
 
+<script src="google-forms-config.js"></script>
+<script>
+(function() {
+  const raw = window.BLL_GOOGLE_FORM_EMBED_URL;
+  if (typeof raw !== 'string' || !raw.trim()) return;
+  let u;
+  try { u = new URL(raw.trim()); } catch { return; }
+  // Allow only public Google Forms responder URLs, never arbitrary embeds.
+  const valid = u.protocol === 'https:' && u.hostname === 'docs.google.com'
+    && /^\/forms\/d\/(?:e\/)?[A-Za-z0-9_-]+\/viewform\/?$/.test(u.pathname);
+  if (!valid) return;
+  u.searchParams.set('embedded', 'true');
+  const container = document.getElementById('workspace-quote');
+  const frame = document.getElementById('workspace-form-frame');
+  const fallback = document.getElementById('mail-fallback');
+  const link = document.getElementById('workspace-form-link');
+  if (!container || !frame || !fallback || !link) return;
+  frame.src = u.toString();
+  link.href = u.toString().replace(/[?&]embedded=true/, '');
+  container.hidden = false;
+  fallback.hidden = true;
+  const blurb = document.querySelector('.booking-panel-header p');
+  if (blurb) blurb.textContent = 'Complete the transportation details below and submit your request securely using Google Forms. Our team will reply with availability and pricing. A quote request is not a confirmed booking.';
+})();
+</script>
 <script>
 (function () {
   const form = document.getElementById('quote-form');

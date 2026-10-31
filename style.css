@@ -264,3 +264,9 @@ footer {
   from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+.phone-poster{max-width:700px;margin:2rem auto;padding:2rem;border:1px solid #c9a96e;background:#141416;text-align:center}
+.phone-poster__eyebrow{display:block;color:#c9a96e;font-size:.7rem;letter-spacing:.2em;margin-bottom:1rem}
+.phone-poster__number{display:block;color:#f5e8d0;text-decoration:none;font-size:clamp(1.6rem,5vw,3rem);margin:1rem auto;border-bottom:1px solid #c9a96e;width:fit-content}
+.phone-poster__number:hover{color:#c9a96e}
+.phone-poster p{color:#b8b8c4;font-size:.9rem;line-height:1.5}

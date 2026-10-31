@@ -369,7 +369,7 @@
  </div>
     <h2>Tell us about<br><em>your journey.</em></h2>
     <p>Request your personalized transportation quote. We'll review your itinerary, check availability, and respond with the next steps. An inquiry is not a confirmed reservation.</p>
-    <div class="contact-detail-block"><h4>Reservations email</h4><a href="mailto:reservations@bostonluxlimos.com">reservations@bostonluxlimos.com</a></div>
+    <div class="contact-detail-block"><h4>Reservations email</h4><a href="mailto:reservations@bostonluxlimos.com?subject=Transportation%20Quote%20Request">reservations@bostonluxlimos.com</a><p style="font-size:0.78rem;color:var(--silver);margin-top:0.5rem;">For quotes, airport transfers, and booking questions.</p></div>
     <div class="contact-detail-block"><h4>Corporate inquiries</h4><a href="mailto:reservations@bostonluxlimos.com?subject=Corporate%20transportation%20inquiry">Email our reservations team</a></div>
     <div class="contact-detail-block"><h4>Service area</h4><p>Greater Boston and New England, by arrangement</p></div>
     <p style="font-size:0.8rem;color:var(--silver);">For time-sensitive transportation inquiries, please call (212) 961-7894. Email delivery is still undergoing verification.</p>
@@ -377,7 +377,7 @@
   <div class="booking-panel">
     <div class="booking-panel-header">
       <h3>Request a <em>Quote</em></h3>
-      <p>This form prepares an email in your own mail app. Review the message and press Send to deliver the request. Email delivery is not yet verified; for time-sensitive requests, please call. This is not instant booking.</p>
+      <p>Request a quote using your email application: this form prepares a message for you to review and send. If your email app does not open, call our reservations line or email us directly. This is not an instant booking system.</p>
     </div>
     <form id="quote-form" class="inquiry-form">
       <div class="form-row">
@@ -406,7 +406,7 @@
       <div class="form-field"><label for="q-destination">Destination *</label><input id="q-destination" name="destination" type="text" maxlength="200" required placeholder="Airport, hotel or address"></div>
       <div class="form-field"><label for="q-notes">Additional details (optional)</label><textarea id="q-notes" name="notes" maxlength="750" placeholder="Flight, return pickup, vehicle requirements..."></textarea></div>
       <button type="submit" class="btn-primary" style="display:block;width:100%;border:0;cursor:pointer;">Prepare Quote Request Email</button>
-      <p id="quote-status" role="status" aria-live="polite" style="font-size:0.8rem;color:var(--champagne-pale);margin:1rem 0;">Your email app must open and you must press Send. Email receipt is not yet verified; please call (212) 961-7894 for time-sensitive travel. No information is transmitted automatically by this form.</p>
+      <p id="quote-status" role="status" aria-live="polite" style="font-size:0.8rem;color:var(--champagne-pale);margin:1rem 0;">Your email app must open and you must press Send. For urgent travel, call (212) 961-7894. This form does not submit data automatically.</p>
       <button id="quote-copy" type="button" class="btn-outline" style="cursor:pointer;width:100%;">Copy Quote Details Instead</button>
       <p style="font-size:0.75rem;color:var(--silver);line-height:1.6;margin-top:1rem;">Do not include payment-card or sensitive personal information in your request.</p>
     </form>
@@ -511,7 +511,7 @@
     event.preventDefault();
     if (!form.reportValidity()) return;
     const mail = 'mailto:reservations@bostonluxlimos.com?subject='+encodeURIComponent('Quote request '+dateField.value)+'&body='+encodeURIComponent(text());
-    message.textContent = 'Your email draft should open now. Press Send in your email app. Email receipt is not verified yet. Call (212) 961-7894 for time-sensitive requests.';
+    message.textContent = 'Your email draft should open now. Review it and press Send in your email app. If nothing opens, copy the trip details or call (212) 961-7894.';
     if (typeof window.gtag === 'function') window.gtag('event','quote_email_draft');
     location.href = mail;
   });

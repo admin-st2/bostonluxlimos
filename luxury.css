@@ -42,3 +42,20 @@
 .review-band .review-caption{font-size:13px;margin-top:15px}
 @media(max-width:1000px){.hero-composition{gap:24px}.hero-copy h1{font-size:clamp(60px,8.5vw,95px)}.journey-row{gap:35px}.phone{font-size:29px;padding:18px}}
 @media(max-width:700px){.hero-copy h1{font-size:clamp(61px,16vw,100px)}.hero-destination{padding-top:0}.hero-destination img{height:310px;min-height:0;max-height:none}.hero-actions>.button{width:100%}.journey-row{grid-template-columns:1fr;gap:15px}.journey-description{grid-column:auto}.destination-banner{height:300px}.page-image{height:260px}.review-band{grid-template-columns:1fr;gap:30px;padding:55px var(--gutter)}.review-band h2{font-size:40px}.review-button{max-width:none}.phone,.contact-phone{display:block;font-size:clamp(22px,6.7vw,32px);padding:18px 16px}.phone-label{font-size:11px}.vehicle-index{display:block}}
+
+/* User-supplied vehicle and service photography. */
+.service-photo{margin:0;min-width:0}
+.service-photo img{display:block;width:100%;height:auto;max-width:100%;aspect-ratio:3/2;object-fit:cover}
+.service-photo figcaption{font-size:12px;color:var(--muted);line-height:1.65;padding:12px 0 0}
+.vehicle-option{grid-template-columns:1.2fr 1fr;gap:65px;align-items:center}
+.vehicle-index>.eyebrow{margin-top:20px}
+.catalog-photo img{object-fit:contain;background:var(--ivory);padding:14px;aspect-ratio:16/10}
+.photo-story{display:grid;grid-template-columns:1.15fr 1fr;align-items:center;gap:70px;border-top:1px solid var(--line)}
+.photo-story h2{font-size:clamp(36px,4.2vw,62px);margin:22px 0}
+.photo-story>div>p:not(.eyebrow){font-size:18px;color:var(--muted);line-height:1.8;max-width:540px}
+.photo-story .button{margin-top:28px}
+.portrait-story{grid-template-columns:.8fr 1fr;gap:100px}
+.portrait-story .service-photo{max-width:450px}
+.portrait-story .service-photo img{aspect-ratio:2/3;object-fit:contain}
+@media(max-width:1000px){.photo-story,.vehicle-option{gap:35px}.portrait-story{gap:50px}}
+@media(max-width:700px){.photo-story,.vehicle-option,.portrait-story{grid-template-columns:minmax(0,1fr);gap:28px}.photo-story h2{font-size:39px}.photo-story>div>p:not(.eyebrow){font-size:17px}.portrait-story .service-photo{max-width:400px}.vehicle-index>.eyebrow{max-width:none}.photo-story .button{width:100%;gap:18px}.service-photo figcaption{font-size:11px}}

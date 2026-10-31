@@ -1,6 +1,4 @@
-/* BostonLuxLimos Google Workspace form configuration.
-   After creating and publishing a Google Form, enter the exact
-   Google Forms embed URL below. Leave empty until fully tested.
-   Example format: https://docs.google.com/forms/d/e/<FORM_ID>/viewform?embedded=true
-   No third-party form account is needed. */
-window.BLL_GOOGLE_FORM_EMBED_URL = "";
+/* BostonLuxLimos public Google Forms responder configuration.
+   Contains only the public intake URL; response spreadsheet stays private.
+   A quote request does not confirm a reservation. */
+window.BLL_GOOGLE_FORM_EMBED_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfOGE2zSPRlIuvWn2Y7jeeP323isBd5vaY-UlmRjpMqwbLQag/viewform?embedded=true";

@@ -21,7 +21,6 @@ function setupBostonLuxLimosQuoteForm() {
   }
 
   const form = FormApp.create('BostonLuxLimos | Transportation Quote Request', false);
-  props.setProperty('BLL_FORM_ID', form.getId());
 
   form.setDescription(
     'Private chauffeured transportation throughout New England. ' +
@@ -72,6 +71,7 @@ function setupBostonLuxLimosQuoteForm() {
   const sheet = SpreadsheetApp.create('BostonLuxLimos | Reservation Quote Responses');
   props.setProperty('BLL_SHEET_ID', sheet.getId());
   form.setDestination(FormApp.DestinationType.SPREADSHEET, sheet.getId());
+  props.setProperty('BLL_FORM_ID', form.getId());
 
   Logger.log('FORM EDITOR URL: ' + form.getEditUrl());
   Logger.log('RESPONDER URL (not accessible until published): ' + form.getPublishedUrl());

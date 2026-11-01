@@ -59,3 +59,49 @@
 .portrait-story .service-photo img{aspect-ratio:2/3;object-fit:contain}
 @media(max-width:1000px){.photo-story,.vehicle-option{gap:35px}.portrait-story{gap:50px}}
 @media(max-width:700px){.photo-story,.vehicle-option,.portrait-story{grid-template-columns:minmax(0,1fr);gap:28px}.photo-story h2{font-size:39px}.photo-story>div>p:not(.eyebrow){font-size:17px}.portrait-story .service-photo{max-width:400px}.vehicle-index>.eyebrow{max-width:none}.photo-story .button{width:100%;gap:18px}.service-photo figcaption{font-size:11px}}
+
+/* BostonLuxLimos identity system — exact brand, operator and contact consistency. */
+.site-header{position:sticky;top:0;z-index:50;min-height:108px;padding-block:20px;gap:24px}
+.brand-lockup{display:inline-flex;align-items:center;gap:13px;min-width:0;flex-shrink:0}
+.brand-mark{display:block;width:52px;height:52px;flex-shrink:0}
+.brand-label{display:flex;flex-direction:column;min-width:0}
+.brand-name{font-size:27px;letter-spacing:-.045em;line-height:1.05;white-space:nowrap}
+.brand-name>span{font-style:italic;color:var(--gold)}
+.brand-line{font-size:8px;letter-spacing:.19em;color:var(--muted);line-height:1.6;margin-top:7px}
+.brand-owner{font-size:11px;color:var(--muted);line-height:1.4;margin-top:3px}
+.desktop-nav{gap:24px}.desktop-nav a{font-size:14px}
+.header-quote{font-size:14px;padding:15px 19px;white-space:nowrap}
+.hero-domain{font-size:12px;color:var(--muted);letter-spacing:.07em}
+.home-hero .hero-composition{grid-template-columns:1.05fr 1fr;gap:55px;padding:55px 0 60px;min-height:570px}
+.home-hero .hero-copy h1{font-size:clamp(66px,7.7vw,120px);letter-spacing:-.05em}
+.home-hero .hero-kicker{font-size:9px;letter-spacing:.15em;margin-bottom:25px}
+.home-hero .hero-description{max-width:32ch;font-size:21px;line-height:1.65}
+.home-hero .hero-destination{padding:0}
+.home-hero .hero-destination img{height:100%;min-height:460px;max-height:560px;object-position:49% center}
+.hero-shortcuts{display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding:0}
+.hero-shortcuts a{display:flex;justify-content:space-between;gap:20px;padding:24px 28px;border-right:1px solid var(--line);min-height:60px;font-size:16px}
+.hero-shortcuts a:first-child{padding-left:0}
+.hero-shortcuts a:last-child{border-right:0;padding-right:0}
+.hero-shortcuts a span{color:var(--gold)}
+.brand-note{display:grid;grid-template-columns:1.2fr 1fr;gap:80px;background:var(--raised);border-block:1px solid var(--line)}
+.brand-note h2{font-size:clamp(38px,4vw,62px);margin-top:25px}
+.brand-note>div>p:not(.eyebrow){font-size:18px;color:var(--muted);margin-bottom:20px}
+.brand-note strong{font-weight:400;color:var(--pale)}
+.brand-note .button{margin-top:10px}
+.fleet-collection{padding-top:65px}
+.fleet-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:25px}
+.fleet-choice{border:1px solid var(--line);background:var(--panel);display:flex;flex-direction:column;min-width:0}
+.fleet-choice>.service-photo{padding:12px 12px 0}
+.fleet-choice>.service-photo img{aspect-ratio:16/10;object-fit:cover}
+.fleet-choice>.catalog-photo img{object-fit:contain;padding:8px}
+.fleet-choice>.service-photo figcaption{padding:12px 8px 0;font-size:11px}
+.fleet-choice-body{padding:26px;display:flex;flex-direction:column;flex:1}
+.fleet-choice h2{font-size:34px;letter-spacing:-.03em;line-height:1.1;margin:14px 0 18px}
+.fleet-choice-body>p:not(.eyebrow){font-size:17px;color:var(--muted);margin-bottom:28px}
+.fleet-choice .button{font-size:14px;padding:16px;gap:15px;margin-top:auto}
+.fleet-collection .disclosure{max-width:none;font-size:13px}
+.official-domain{color:var(--gold)!important}
+@media(max-width:1100px){.brand-name{font-size:23px}.brand-mark{width:44px;height:44px}.desktop-nav{gap:18px}.header-quote{font-size:13px;padding:14px 16px}.home-hero .hero-composition{gap:35px}.fleet-choice-body{padding:22px}.fleet-choice h2{font-size:30px}.brand-note{gap:45px}}
+@media(max-width:900px){.desktop-nav{display:none}.mobile-menu{display:block;margin-left:auto}.site-header{flex-wrap:wrap;gap:14px 18px}.header-quote{display:flex;order:3;flex-basis:100%;justify-content:space-between;min-height:45px;padding:13px 18px}.mobile-menu summary{display:flex;align-items:center;gap:18px;list-style:none;min-height:44px;font-size:15px}.mobile-menu summary::-webkit-details-marker{display:none}.mobile-menu[open]{width:auto;margin-left:auto;border:0;padding:0}.mobile-menu nav{display:grid;position:absolute;top:100%;left:0;right:0;padding:20px var(--gutter);background:var(--panel);border-bottom:1px solid var(--gold);box-shadow:0 16px 30px rgba(0,0,0,.4)}.mobile-menu nav a{padding:13px 0;font-size:22px;border-top:1px solid var(--line)}.fleet-cards{grid-template-columns:minmax(0,1fr);gap:28px;max-width:720px;margin:auto}.fleet-choice{display:grid;grid-template-columns:1fr 1fr;align-items:stretch}.fleet-choice>.service-photo{padding:15px 0 15px 15px}.fleet-choice>.service-photo img{min-height:220px;height:calc(100% - 40px)}.fleet-choice-body{padding:26px}.fleet-choice h2{font-size:34px}.brand-note{gap:35px}}
+@media(max-width:700px){html{scroll-padding-top:160px}.site-header{min-height:0;padding:14px var(--gutter);gap:12px}.brand-lockup{gap:9px}.brand-mark{width:38px;height:38px}.brand-name{font-size:22px}.brand-line{font-size:7px;letter-spacing:.12em;margin-top:5px}.brand-owner{font-size:10px}.header-quote{font-size:14px}.mobile-menu summary{padding:10px 0;gap:12px;font-size:14px}.home-hero .hero-topline{gap:10px;flex-wrap:wrap}.hero-domain{font-size:11px}.home-hero .hero-composition{display:flex;gap:32px;padding:38px 0 28px;min-height:0}.home-hero .hero-copy h1{font-size:clamp(55px,14.5vw,90px)}.home-hero .hero-kicker{font-size:8px;letter-spacing:.1em}.home-hero .hero-description{font-size:19px;margin-top:24px;max-width:34ch}.home-hero .hero-destination img{min-height:0;height:300px;max-height:none}.hero-shortcuts{display:flex;flex-direction:column;padding:0;gap:0}.hero-shortcuts a,.hero-shortcuts a:first-child,.hero-shortcuts a:last-child{padding:18px 0;border-right:0;border-bottom:1px solid var(--line);font-size:16px;min-height:54px}.hero-shortcuts a:last-child{border-bottom:0}.brand-note{grid-template-columns:1fr;gap:28px}.brand-note h2{font-size:40px}.brand-note>div>p:not(.eyebrow){font-size:17px}.brand-note .button{width:100%}.brand-lockup-footer .brand-mark{width:44px;height:44px}.brand-lockup-footer .brand-name{font-size:25px}.fleet-choice{display:flex}.fleet-choice>.service-photo{padding:12px 12px 0}.fleet-choice>.service-photo img{min-height:0;height:auto;aspect-ratio:16/10}.fleet-choice-body{padding:26px}.fleet-choice h2{font-size:36px}.fleet-collection{padding-top:35px}.fleet-collection .disclosure{margin-top:25px}}
+@media(max-width:360px){.brand-mark{width:32px;height:32px}.brand-name{font-size:20px}.brand-line{font-size:6.5px}.brand-owner{font-size:9px}.mobile-menu summary{gap:8px;font-size:13px}.fleet-choice-body{padding:22px}}

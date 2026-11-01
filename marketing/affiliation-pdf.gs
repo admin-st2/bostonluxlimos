@@ -156,6 +156,20 @@ function previewAffiliationPdfRedesign() {
 }
 
 function affiliationPdfOnePageHtml_(reference, headers, data) {
+  return affiliationPdfRefinedHtml_(reference, headers, data);
+}
+
+function previewLongAffiliationPdfRedesign() {
+  const data = Array(12).fill('LAYOUT TEST ONLY - Longer sample response to verify that the single-page summary remains legible. '.repeat(30));
+  data[0] = 'November 1, 2026';
+  data[1] = 'layout-test@example.invalid';
+  data[2] = 'LAYOUT TEST ONLY - maximum-length partner introduction';
+  const html = affiliationPdfOnePageHtml_('LONG RESPONSE TEST', [], data);
+  const file = affiliationPdfFolder_().createFile(HtmlService.createHtmlOutput(html).getAs(MimeType.PDF).setName('BostonLuxLimos - One Page Long Response Layout Test.pdf'));
+  console.log('Long response design preview: ' + file.getUrl());
+}
+
+function affiliationPdfRefinedHtml_(reference, headers, data) {
   const dense = data.join('').length > 1000;
   const esc = v => String(v == null ? '' : v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   let shortened = false;
@@ -186,23 +200,26 @@ function affiliationPdfOnePageHtml_(reference, headers, data) {
     '.section{font:8pt Arial,sans-serif;letter-spacing:1.2pt;text-transform:uppercase;color:#82632e;margin:13pt 0 6pt}.standards{padding:10pt 11pt;border:1px solid #ded9cf}' +
     '.notice{font:7.5pt Arial,sans-serif;line-height:1.4;color:#68635c;margin:13pt 0 10pt}.footer{border-top:1pt solid #b99b60;padding-top:8pt;font:7.2pt Arial,sans-serif;color:#666}.footer a{color:#786037}.empty{color:#888;font-style:italic}' +
     'body.dense{font-size:8.3pt;line-height:1.22}.dense td{padding:6pt 9pt}.dense .masthead td{padding:0 0 9pt}.dense .brand{font-size:23pt}.dense .hero{padding:10pt 0}.dense h1{font-size:23pt}.dense .company{padding:8pt 10pt;margin-bottom:8pt}.dense .company .answer{font-size:10pt}.dense .section{margin:9pt 0 5pt}.dense .standards{padding:7pt 9pt}.dense .notice{font-size:7pt;margin:9pt 0 8pt}' +
+    'body{font-size:9.5pt;line-height:1.4}td{border:0;border-bottom:.5pt solid #d9d3c8;padding:10pt 0}td+td{padding-left:17pt}.masthead td{padding:0 0 12pt;border:0}.masthead td+td{padding-left:0}.brand{font-size:27pt}.tag{font-size:9.5pt}.hero{padding:14pt 0 13pt}h1{font-size:28pt;letter-spacing:-.4pt}.company{padding:10pt 12pt;margin-bottom:10pt;background:#f4f1eb}.company .answer{font-size:13pt}.label{font-size:7pt;letter-spacing:.45pt;color:#7b6743}.section{font:italic 14pt Georgia,serif;text-transform:none;letter-spacing:0;color:#222;border-bottom:.6pt solid #b99b60;padding-bottom:4pt;margin:12pt 0 3pt}.commercial td{background:#f3f0e9;padding:10pt 11pt;border-bottom:0}.commercial td+td{border-left:7pt solid white}.standards{border:0;border-bottom:.5pt solid #d9d3c8;padding:8pt 0 10pt}.notice{margin:11pt 0 9pt;color:#77726a}.footer{font-size:7.5pt;line-height:1.45}.dense td{padding:6pt 0}.dense td+td{padding-left:14pt}.dense .masthead td{padding:0 0 8pt}.dense .masthead td+td{padding-left:0}.dense .section{font-size:12pt;margin:8pt 0 3pt}.dense .commercial td{padding:7pt 9pt}.dense .standards{padding:7pt 0}.dense .company .answer{font-size:10pt}' +
     '</style></head><body class="' + (dense ? 'dense' : '') + '"><table class="masthead"><tr><td><p class="brand">BostonLuxLimos</p><p class="tag">Elegance in every journey</p></td><td class="right"><p class="kicker">Worldwide affiliations</p><p class="ref">' + esc(reference) + '</p></td></tr></table>' +
     '<div class="hero"><h1>Partner Introduction</h1><p class="sub">Different destinations. The same personal attention.</p></div>' +
     '<div class="company"><p class="label">Company & website</p><p class="answer">' + company + '</p></div>' +
-    '<p class="section">At a glance</p><table>' + profile + '</table>' +
-    '<p class="section">Commercial overview</p><table>' + commercial + '</table>' +
+    '<p class="section">Company profile</p><table>' + profile + '</table>' +
+    '<p class="section">Commercial details</p><table class="commercial">' + commercial + '</table>' +
     '<p class="section">Service standards & discretion</p><div class="standards"><p class="answer">' + standards + '</p></div>' +
     '<p class="notice">For review only. Information is supplied by the applicant and has not been independently verified. This introduction does not approve an affiliation, accept rates or confirm a journey.' +
     (shortened ? ' Longer answers are excerpted; the complete submission remains in the private inquiry record.' : '') + '</p>' +
     '<div class="footer">Operated by STRUT2 LLC &nbsp; | &nbsp; bostonluxlimos.com<br>Received: ' + esc(data[0]) + ' &nbsp; | &nbsp; <a href="' + source + '">Open complete private inquiry</a></div></body></html>';
 }
 
-function previewLongAffiliationPdfRedesign() {
-  const data = Array(12).fill('LAYOUT TEST ONLY - Longer sample response to verify that the single-page summary remains legible. '.repeat(30));
-  data[0] = 'November 1, 2026';
-  data[1] = 'layout-test@example.invalid';
-  data[2] = 'LAYOUT TEST ONLY - maximum-length partner introduction';
-  const html = affiliationPdfOnePageHtml_('LONG RESPONSE TEST', [], data);
-  const file = affiliationPdfFolder_().createFile(HtmlService.createHtmlOutput(html).getAs(MimeType.PDF).setName('BostonLuxLimos - One Page Long Response Layout Test.pdf'));
-  console.log('Long response design preview: ' + file.getUrl());
+function previewRefinedAffiliationPdf() {
+ const sheet = SpreadsheetApp.openById(BLL_PDF.spreadsheetId).getSheetById(BLL_PDF.sheetId);
+ const data = sheet.getRange(4,1,1,BLL_PDF.responseColumns).getDisplayValues()[0];
+ if (!/^TEST/.test(data[2] || '')) throw new Error('Only internal QA records may be previewed.');
+ const long = Array(12).fill('LAYOUT TEST ONLY - A longer response verifies the refined single-page document. '.repeat(30));
+ long[0]='November 1, 2026';long[1]='layout-test@example.invalid';long[2]='LAYOUT TEST ONLY - long-response verification';
+ [[data,'Refined Partner Introduction'],[long,'Refined Long Response Test']].forEach(pair => {
+  const pdf=HtmlService.createHtmlOutput(affiliationPdfRefinedHtml_('DESIGN REVIEW',[],pair[0])).getAs(MimeType.PDF).setName('BostonLuxLimos - '+pair[1]+'.pdf');
+  const file=affiliationPdfFolder_().createFile(pdf);console.log(pair[1]+': '+file.getUrl());
+ });
 }

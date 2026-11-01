@@ -5,9 +5,9 @@
 - Owner: sj@bostonluxlimos.com
 - Editor: https://docs.google.com/forms/d/1onOFvd9ggeNO5TeFpL9d0sKv0aTYn8091Y67ptTThYw/edit
 - Private response spreadsheet: retained in the owner's Google Drive; never embed or publish its URL on the public page.
-- Owner email notifications enabled. Responder-entered email collection and response copies enabled. No sign-in limit. Results summary disabled.
+- Owner email notifications enabled; receipt and owner notification both delivered in end-to-end testing. Responder-entered email collection and response copies enabled. No sign-in limit. Results summary disabled.
 - Internal test submitted November 1, 2026: company begins "TEST — BostonLuxLimos website integration". Exclude it from partner counts.
-- Verified test confirmation, linked-sheet row and responder receipt in sj mailbox. Owner-notification delivery not yet independently verified.
+- Verified test confirmation, linked-sheet row, responder receipt and owner notification in sj mailbox.
 - Form linked from affiliations.html; footer links added to all 13 customer-facing pages.
 
 ## Review each introduction

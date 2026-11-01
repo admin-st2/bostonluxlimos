@@ -247,3 +247,15 @@ body.warm-grey-preview{--panel:#e9e6e0}
 .privacy-copy .page-enquiry{margin-top:34px}
 @media(max-width:1000px){.footer-main{grid-template-columns:1fr 1fr;gap:40px}}
 @media(max-width:600px){.footer-main{grid-template-columns:1fr;gap:30px}}
+
+/* Worldwide affiliation page, using the existing site palette and typography. */
+.affiliation-intro{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.affiliation-intro p,.affiliation-grid p,.affiliation-inquiry p{line-height:1.75}
+.affiliation-intro .button{margin-top:18px}
+.affiliation-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 48px}
+.affiliation-grid article{padding:30px 0;border-top:1px solid rgba(23,23,23,.2)}
+.affiliation-grid h3{font-size:28px;line-height:1.2;margin:0 0 18px}
+.affiliation-details{border-top:1px solid rgba(23,23,23,.16)}
+.affiliation-inquiry{scroll-margin-top:30px}
+.affiliation-inquiry .contact-editorial>p{max-width:46ch}
+@media(max-width:700px){.affiliation-intro,.affiliation-grid{grid-template-columns:1fr;gap:24px}.affiliation-grid{gap:0}.affiliation-intro{gap:20px}}

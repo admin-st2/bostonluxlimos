@@ -259,3 +259,26 @@ body.warm-grey-preview{--panel:#e9e6e0}
 .affiliation-inquiry{scroll-margin-top:30px}
 .affiliation-inquiry .contact-editorial>p{max-width:46ch}
 @media(max-width:700px){.affiliation-intro,.affiliation-grid{grid-template-columns:1fr;gap:24px}.affiliation-grid{gap:0}.affiliation-intro{gap:20px}}
+
+/* Compact phone footer; desktop columns retain their established layout. */
+.footer-group{min-width:0}
+.footer-group summary{list-style:none;cursor:default}
+.footer-group summary::-webkit-details-marker{display:none}
+.footer-group summary::marker{content:""}
+.footer-links>a{display:block;color:var(--muted);font-size:15px;padding:9px 0;overflow-wrap:anywhere}
+.footer-links>a:hover{color:var(--gold)}
+.footer-group summary:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+@media(max-width:600px){
+ footer{padding:28px var(--gutter) 20px}
+ .footer-main{gap:0;padding-bottom:18px}
+ .footer-main>.footer-wordmark{display:block;margin-bottom:20px;font-size:27px}
+ .footer-wordmark .brand-owner{margin-top:6px}
+ .footer-group{border-top:1px solid var(--line)}
+ .footer-group:last-child{border-bottom:1px solid var(--line)}
+ .footer-main .footer-group summary{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0;min-height:50px;padding:14px 0;cursor:pointer;font-size:12px;letter-spacing:.12em}
+ .footer-group summary::after{content:"+";font-family:Arial,sans-serif;font-size:20px;line-height:1;font-weight:400;flex:none}
+ .footer-group[open] summary::after{content:"−"}
+ .footer-links{padding:0 0 10px}
+ .footer-links>a{min-height:44px;padding:12px 0;font-size:14px;line-height:1.4}
+ .footer-bottom{padding-top:16px;display:grid;gap:8px;font-size:11px;line-height:1.5}
+}

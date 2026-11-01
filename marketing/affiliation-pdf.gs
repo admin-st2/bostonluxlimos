@@ -143,30 +143,66 @@ function affiliationPdfAudit_(ss) {
 }
 
 function affiliationPdfHtml_(reference, headers, data) {
-  const esc = v => String(v == null ? '' : v).replace(/[&<>"']/g, c =>
-    ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const fields = headers.map((label, i) => {
-    if (!data[i] || !label) return '';
-    return '<section class="field"><h2>' + esc(label) + '</h2><p>' +
-      esc(data[i]).replace(/\n/g, '<br>') + '</p></section>';
-  }).join('');
-  const generated = Utilities.formatDate(new Date(), BLL_PDF.timeZone, 'MMMM d, yyyy h:mm a z');
+  return affiliationPdfOnePageHtml_(reference, headers, data);
+}
+
+function previewAffiliationPdfRedesign() {
+  const sheet = SpreadsheetApp.openById(BLL_PDF.spreadsheetId).getSheetById(BLL_PDF.sheetId);
+  const data = sheet.getRange(3, 1, 1, BLL_PDF.responseColumns).getDisplayValues()[0];
+  if (!/^TEST/.test(data[2] || '')) throw new Error('Preview is restricted to the internal test row.');
+  const html = affiliationPdfOnePageHtml_('DESIGN PREVIEW', [], data);
+  const file = affiliationPdfFolder_().createFile(HtmlService.createHtmlOutput(html).getAs(MimeType.PDF).setName('BostonLuxLimos - Partner Introduction - One Page Preview.pdf'));
+  console.log('One-page design preview: ' + file.getUrl());
+}
+
+function affiliationPdfOnePageHtml_(reference, headers, data) {
+  const dense = data.join('').length > 1000;
+  const esc = v => String(v == null ? '' : v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  let shortened = false;
+  const value = (i, limit) => {
+    let text = String(data[i] || '').replace(/\s+/g, ' ').trim();
+    if (!text) return '<span class="empty">Not supplied</span>';
+    if (text.length > limit) { text = text.slice(0, limit).replace(/\s+\S*$/, '') + '... [full response in inquiry]'; shortened = true; }
+    // Break long unspaced strings so a URL cannot widen the table.
+    return esc(text).replace(/([^\s<>]{35})(?=[^\s<>])/g, '$1<wbr>');
+  };
+  const box = (label, text) => '<td><p class="label">' + label + '</p><p class="answer">' + text + '</p></td>';
+  const row = (a, b) => '<tr>' + a + b + '</tr>';
+  const profile = row(box('Business contact',value(3,120)), box('Email',value(1,110))) +
+    row(box('Destinations & airports',value(5,230)),box('Dispatch & availability',value(6,230))) +
+    row(box('Vehicles & accessibility',value(7,230)),box('Client support & referrals',value(10,280)));
+  const commercial = row(box('Rates, currency & additional fees',value(8,350)),box('Cancellations, waiting & payment',value(9,350)));
+  const standards = value(11,330);
+  const company = value(2,170);
+  const source = 'https://docs.google.com/spreadsheets/d/' + BLL_PDF.spreadsheetId + '/edit#gid=' + BLL_PDF.sheetId;
   return '<!doctype html><html><head><meta charset="UTF-8"><style>' +
-    '@page{size:A4;margin:19mm 18mm}body{font-family:Georgia,"Times New Roman",serif;color:#202020;font-size:10.5pt;line-height:1.55}' +
-    '.brand{font-family:"Times New Roman",serif;font-style:italic;font-size:25pt;margin:0}.tagline{font-size:10pt;color:#82632e;margin:0 0 18pt}' +
-    '.rule{border-top:2pt solid #b99b60;margin:12pt 0 18pt}.eyebrow{font:8pt Arial,sans-serif;letter-spacing:2pt;color:#82632e;text-transform:uppercase}' +
-    'h1{font-size:25pt;font-weight:normal;margin:7pt 0 5pt}.meta{font:9pt Arial,sans-serif;color:#555}.intro{margin:16pt 0 22pt}' +
-    '.field{margin:0 0 14pt;padding-top:8pt;border-top:.5pt solid #d9d3c7}h2{font: bold 9pt Arial,sans-serif;color:#82632e;margin:0 0 5pt}' +
-    'p{margin:0;overflow-wrap:anywhere;white-space:normal}.notice{background:#f3f0e9;padding:12pt;font-size:9pt;margin-top:20pt}' +
-    '.footer{border-top:.5pt solid #b99b60;padding-top:9pt;margin-top:22pt;font-size:8pt;color:#666}</style></head><body>' +
-    '<p class="brand">BostonLuxLimos</p><p class="tagline">Elegance in every journey</p><div class="rule"></div>' +
-    '<p class="eyebrow">Worldwide affiliations</p><h1>Partner Introduction</h1>' +
-    '<p class="meta">' + esc(reference) + ' · Prepared ' + esc(generated) + '</p>' +
-    '<p class="intro">Different destinations. The same personal attention.<br>' +
-    'An introduction to explore how we can support each other’s clients.</p>' + fields +
-    '<div class="notice"><strong>For partnership review.</strong> This document records information provided by the applicant. ' +
-    'Details have not been independently verified. It is not an agreement, an acceptance of rates, an approved affiliation or a confirmed reservation. ' +
-    'Commercial arrangements and individual journeys require separate review and written confirmation.</div>' +
-    '<p class="footer">BostonLuxLimos · Operated by STRUT2 LLC<br>bostonluxlimos.com · Private business correspondence</p>' +
-    '</body></html>';
+    '@page{size:A4;margin:13mm 15mm}*{box-sizing:border-box}body{margin:0;color:#222;font:9.2pt Georgia,"Times New Roman",serif;line-height:1.35}' +
+    'table{border-collapse:collapse;table-layout:fixed;width:100%}td{vertical-align:top;width:50%;padding:9pt 11pt;border:1px solid #ded9cf}' +
+    '.masthead td{border:0;padding:0 0 12pt}.masthead .right{text-align:right;vertical-align:middle}.brand{font:italic 25pt "Times New Roman",serif;margin:0}.tag{font-size:9pt;color:#82632e;margin:3pt 0 0}' +
+    '.kicker{font:7.2pt Arial,sans-serif;letter-spacing:1.4pt;text-transform:uppercase;color:#82632e;margin:0 0 5pt}.ref{font:8pt Arial,sans-serif;color:#666;margin:0}' +
+    '.hero{border-top:2pt solid #b99b60;padding:15pt 0 12pt}h1{font-size:26pt;font-weight:normal;line-height:1.1;margin:0 0 5pt}.sub{font-size:10pt;color:#5d5140;margin:0}' +
+    '.company{background:#f2efe8;border-left:3pt solid #b99b60;padding:10pt 12pt;margin-bottom:12pt}.company .answer{font-size:12pt;line-height:1.25}' +
+    '.label{font:bold 7.2pt Arial,sans-serif;letter-spacing:.5pt;text-transform:uppercase;color:#786037;margin:0 0 5pt}.answer{margin:0;word-wrap:break-word;overflow-wrap:break-word}' +
+    '.section{font:8pt Arial,sans-serif;letter-spacing:1.2pt;text-transform:uppercase;color:#82632e;margin:13pt 0 6pt}.standards{padding:10pt 11pt;border:1px solid #ded9cf}' +
+    '.notice{font:7.5pt Arial,sans-serif;line-height:1.4;color:#68635c;margin:13pt 0 10pt}.footer{border-top:1pt solid #b99b60;padding-top:8pt;font:7.2pt Arial,sans-serif;color:#666}.footer a{color:#786037}.empty{color:#888;font-style:italic}' +
+    'body.dense{font-size:8.3pt;line-height:1.22}.dense td{padding:6pt 9pt}.dense .masthead td{padding:0 0 9pt}.dense .brand{font-size:23pt}.dense .hero{padding:10pt 0}.dense h1{font-size:23pt}.dense .company{padding:8pt 10pt;margin-bottom:8pt}.dense .company .answer{font-size:10pt}.dense .section{margin:9pt 0 5pt}.dense .standards{padding:7pt 9pt}.dense .notice{font-size:7pt;margin:9pt 0 8pt}' +
+    '</style></head><body class="' + (dense ? 'dense' : '') + '"><table class="masthead"><tr><td><p class="brand">BostonLuxLimos</p><p class="tag">Elegance in every journey</p></td><td class="right"><p class="kicker">Worldwide affiliations</p><p class="ref">' + esc(reference) + '</p></td></tr></table>' +
+    '<div class="hero"><h1>Partner Introduction</h1><p class="sub">Different destinations. The same personal attention.</p></div>' +
+    '<div class="company"><p class="label">Company & website</p><p class="answer">' + company + '</p></div>' +
+    '<p class="section">At a glance</p><table>' + profile + '</table>' +
+    '<p class="section">Commercial overview</p><table>' + commercial + '</table>' +
+    '<p class="section">Service standards & discretion</p><div class="standards"><p class="answer">' + standards + '</p></div>' +
+    '<p class="notice">For review only. Information is supplied by the applicant and has not been independently verified. This introduction does not approve an affiliation, accept rates or confirm a journey.' +
+    (shortened ? ' Longer answers are excerpted; the complete submission remains in the private inquiry record.' : '') + '</p>' +
+    '<div class="footer">Operated by STRUT2 LLC &nbsp; | &nbsp; bostonluxlimos.com<br>Received: ' + esc(data[0]) + ' &nbsp; | &nbsp; <a href="' + source + '">Open complete private inquiry</a></div></body></html>';
+}
+
+function previewLongAffiliationPdfRedesign() {
+  const data = Array(12).fill('LAYOUT TEST ONLY - Longer sample response to verify that the single-page summary remains legible. '.repeat(30));
+  data[0] = 'November 1, 2026';
+  data[1] = 'layout-test@example.invalid';
+  data[2] = 'LAYOUT TEST ONLY - maximum-length partner introduction';
+  const html = affiliationPdfOnePageHtml_('LONG RESPONSE TEST', [], data);
+  const file = affiliationPdfFolder_().createFile(HtmlService.createHtmlOutput(html).getAs(MimeType.PDF).setName('BostonLuxLimos - One Page Long Response Layout Test.pdf'));
+  console.log('Long response design preview: ' + file.getUrl());
 }

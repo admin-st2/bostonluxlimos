@@ -22,7 +22,7 @@ function stop(){
  for(const name of names)for(const domain of [null,location.hostname,'.'+location.hostname,'.bostonluxlimos.com'])document.cookie=name+'=; Max-Age=0; Path=/'+(domain?'; Domain='+domain:'')+'; SameSite=Lax';
 }
 const panel=document.createElement('aside');panel.id='analytics-choice';panel.setAttribute('aria-label','Optional analytics cookies');
-panel.innerHTML='<div><strong>A little insight. Your choice.</strong><p>With your permission, Google Analytics helps us understand page visits, call-button clicks and quote interest. It does not record your calls or collect what you type into our forms. <a href="privacy.html#website-analytics">Learn more</a></p></div><div class="analytics-actions"><button type="button" data-choice="no">Decline analytics</button><button type="button" data-choice="yes">Allow analytics</button></div>';
+panel.innerHTML='<div><strong>A little insight. Your choice.</strong><p>With your permission, Google Analytics helps us understand page visits, call-button clicks and quote interest. It does not record your calls or collect what you type into our forms. <a href="/privacy/#website-analytics">Learn more</a></p></div><div class="analytics-actions"><button type="button" data-choice="no">Decline analytics</button><button type="button" data-choice="yes">Allow analytics</button></div>';
 panel.addEventListener('click',event=>{
  const button=event.target.closest('button[data-choice]');if(!button)return;
  const allowed=button.dataset.choice==='yes';try{localStorage.setItem(key,allowed?'granted':'denied');}catch(_){}
